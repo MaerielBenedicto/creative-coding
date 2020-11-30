@@ -1,25 +1,23 @@
-let cWidth = 1400;
-let cHeight = 900;
+let cWidth = 900;
+let cHeight = 650;
 let numCubeWidth = 7;
 let numCubeHeight = 5;
 let cubeWidth = cWidth / numCubeWidth;
 let cubeHeight = cHeight / numCubeHeight;
 
-let offsetX = 100;
-let offsetY = 50;
+let offsetX = cubeWidth/2;
 
-//big cube
-let dWidth_b = 200;
-let dHeight_b = 100;
-let bH = 130;
-
-let startPointX = 50;
-let startPointY = 25;
+let dWidth_b = cubeWidth;
+let dHeight_b = cubeWidth/2;
+let bH = dHeight_b + 30;
 
 //small cube
-let dWidth_s = 100;
-let dHeight_s = 50;
-let sH = 95;
+let startPointX = dHeight_b/2;
+let startPointY = dHeight_b / 4;
+
+let dWidth_s = cubeWidth/2;
+let dHeight_s = cubeWidth/4;
+let sH = dHeight_s + 30;
 
 let HSB01;
 
@@ -35,8 +33,8 @@ function setup() {
 
 function draw() {
   background(255);
-  for (let j = 0; j < cHeight; j++) {
-    for (let i = 0; i < cWidth; i++) {
+  for (let j = 0; j < numCubeHeight + 1; j++) {
+    for (let i = 0; i < numCubeWidth + 1; i++) {
       let transValueX;
       let transValueY;
 

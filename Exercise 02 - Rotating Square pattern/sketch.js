@@ -6,8 +6,8 @@ let rSize;
 
 function setup() {
   createCanvas(700, 700);
-  colorMode(RGB, numRect, numRect, numRect);
-  // colorMode(HSB, width, height, 100);
+  // colorMode(RGB, numRect, numRect, numRect);
+  colorMode(HSB);
 
   background(255);
   // noLoop();

@@ -1,8 +1,8 @@
-let cWidth = 1754;
-let cHeight = 2481;
-
-let numCubeWidth = 14;
-let numCubeHeight = 16;
+let cWidth = 800;
+let cHeight = 700;
+let cnv;
+let numCubeWidth = 8;
+let numCubeHeight = 8;
 let cubeWidth = cWidth / numCubeWidth;
 let cubeHeight = cHeight / numCubeHeight;
 
@@ -47,7 +47,8 @@ let inner_cubes = [];
 let sw = 0;
 
 function setup() {
-  createCanvas(cWidth, cHeight);
+   cnv = createCanvas(cWidth, cHeight);
+  cnv.position(80,100);
   colorMode(HSB);
   rectMode(CENTER);
   noStroke();
@@ -55,27 +56,27 @@ function setup() {
 
   // slider01
   slider01 = createSlider(0, 75, 0, 1);
-  slider01.position(cWidth + 50, 100);
+  slider01.position(cWidth + 150, 220);
   slider01.style('width', '100px');
 
   // slider02
   slider02 = createSlider(0, 50, 0, 1);
-  slider02.position(cWidth + 50, 150);
+  slider02.position(cWidth + 150, 280);
   slider02.style('width', '100px');
 
   // slider03
   slider03 = createSlider(0, 20, 0, 1);
-  slider03.position(cWidth + 50, 60);
+  slider03.position(cWidth + 150, 160);
   slider03.style('width', '100px');
 
   //change number of cube in row
-  slider04 = createSlider(5, 20, 9, 1);
-  slider04.position(cWidth + 50, 800);
+  slider04 = createSlider(5, 20, 5, 1);
+  slider04.position(cWidth + 150, 615);
   slider04.style('width', '200px');
 
   //change number of cube in col
-  slider05 = createSlider(5, 20, 13, 1);
-  slider05.position(cWidth + 50, 875);
+  slider05 = createSlider(5, 20, 5, 1);
+  slider05.position(cWidth + 150, 685);
   slider05.style('width', '200px');
 
   //colors array
@@ -246,32 +247,40 @@ function generateInnerPattern() {
 function displayButton() {
 
   let msg03 = createP('Resize inner cube');
-  msg03.position(cWidth + 50,25);
+  msg03.position(cWidth + 150, 120);
   msg03.style('font-family','Poppins');
   msg03.style('font-size','14px');
 
   let msg = createP('Change angle of outer cube');
-  msg.position(cWidth + 50,65);
+  msg.position(cWidth + 150,180);
   msg.style('font-family','Poppins');
   msg.style('font-size','14px');
 
   let msg02 = createP('Change angle of inner cube');
-  msg02.position(cWidth + 50,110);
+  msg02.position(cWidth + 150,240);
   msg02.style('font-family','Poppins');
   msg02.style('font-size','14px');
 
   let msg4 = createP('Change number of cubes in row');
-  msg4.position(cWidth + 50,750);
+  msg4.position(cWidth + 150,580);
   msg4.style('font-family','Poppins');
   msg4.style('font-size','14px');
 
   let msg05 = createP('Change number of cubes in column');
-  msg05.position(cWidth + 50,825);
+  msg05.position(cWidth + 150,650);
   msg05.style('font-family','Poppins');
   msg05.style('font-size','14px');
 
+  bcPattern = createButton('Generate outer cube pattern');
+  bcPattern.position(cWidth + 150, 350);
+  bcPattern.mousePressed(generateOuterPattern);
+  bcPattern.style('background-color', color(200, 69, 90));
+  bcPattern.style('border-style', 'none');
+  bcPattern.style('width', '150px');
+  bcPattern.style('height', '50px');
+
   genColbutton = createButton('Generate Color');
-  genColbutton.position(cWidth + 50, 400);
+  genColbutton.position(cWidth + 150, 420);
   genColbutton.mousePressed(generateColor);
   genColbutton.style('background-color', color(200, 69, 90));
   genColbutton.style('border-style', 'none');
@@ -279,20 +288,13 @@ function displayButton() {
   genColbutton.style('height', '50px');
 
   bgButton = createButton('Generate Background');
-  bgButton.position(cWidth + 50, 500);
+  bgButton.position(cWidth + 150, 500);
   bgButton.mousePressed(generateBGColor);
   bgButton.style('background-color', color(200, 69, 90));
   bgButton.style('border-style', 'none');
   bgButton.style('width', '150px');
   bgButton.style('height', '50px');
 
-  bcPattern = createButton('Generate outer cube pattern');
-  bcPattern.position(cWidth + 50, 300);
-  bcPattern.mousePressed(generateOuterPattern);
-  bcPattern.style('background-color', color(200, 69, 90));
-  bcPattern.style('border-style', 'none');
-  bcPattern.style('width', '150px');
-  bcPattern.style('height', '50px');
 
 }
 

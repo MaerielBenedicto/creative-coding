@@ -1,5 +1,5 @@
 let cWidth = 800;
-let cHeight = 800;
+let cHeight = 500;
 let numSquares = 15;
 let squareSize = cWidth / numSquares;
 
@@ -24,8 +24,8 @@ function draw() {
       noFill();
       stroke(i, numSquares-j,j);
 
-      let r = map(mouseX, 0, cWidth, -(squareSize/2), (squareSize/2));
-      let sw = map(mouseY, 0, cWidth, 0, 15)
+      let r = map(mouseX, 0, cWidth, -(squareSize/2), (squareSize/2),true);
+      let sw = map(mouseY, 0, cWidth, 0, 15,true)
         let randomNum = round(random(0, 1));
         if (randomNum == 0) {
           strokeWeight(sw);

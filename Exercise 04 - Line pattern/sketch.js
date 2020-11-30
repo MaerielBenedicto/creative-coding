@@ -1,5 +1,5 @@
-let cWidth = 1400;
-let cHeight = 750;
+let cWidth = 900;
+let cHeight = 500;
 let numSquares = 50;
 let squareSizeW = cWidth / numSquares;
 let squareSizeH = cHeight / numSquares;
@@ -14,7 +14,7 @@ function setup() {
 function draw() {
   randomSeed(50);
 
-  background(0);
+  background(255);
 
 
   for (let j = 0; j < numSquares; j++) {
@@ -31,7 +31,7 @@ function draw() {
       noFill();
 
       let d = dist(mouseX, mouseY, i * squareSizeW, j * squareSizeH);
-      let sw = map(d, 0, width, 5, 10);
+      let sw = map(d, 0, width, 2, 8, true);
       strokeWeight(sw);
       stroke(i, numSquares-j,j);
 

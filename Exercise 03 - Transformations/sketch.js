@@ -1,7 +1,7 @@
 //Exercise 3 - 30/09/2020
 let numOfSegments;
 let stepAngle;
-let radius = 100;
+let radius;
 
 function setup() {
   createCanvas(500, 500);
@@ -13,12 +13,16 @@ function setup() {
 }
 
 function draw() {
+  background(255);
 
   //mouse interactivity
-  numOfSegments = map(mouseX,0,width,10,40);
+  numOfSegments = round(map(mouseX, 0, width, 10, 40,true));
+  console.log(numOfSegments);
   stepAngle = 360/numOfSegments;
+  radius = 200;
+
   push();
-  translate(250,250);
+  translate(width/2, height/2);
   // rotate(45);
   beginShape(TRIANGLE_FAN);
   vertex(0, 0);
