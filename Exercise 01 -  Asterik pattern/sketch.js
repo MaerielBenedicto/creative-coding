@@ -1,6 +1,5 @@
 //Exercise 01
 
-
 let numOfSegments;
 let stepAngle;
 let radius;
@@ -28,8 +27,7 @@ function draw() {
 
     let startColor = color(col01, 100, 100);
     let endColor = color(col02, 100, 100);
-    let col = lerpColor(startColor, endColor, i / 10);
-    // fill(col);
+    let col = lerpColor(startColor, endColor, i / height);
 
     let vx = (radius * sin(i));
     let vy = (radius * cos(i));

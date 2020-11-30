@@ -4,7 +4,7 @@
 
 let numOfSegments = 360;
 let stepAngle = 360/numOfSegments;
-let radius = 100;
+let radius = 200;
 
 function setup(){
   createCanvas(500,500);
