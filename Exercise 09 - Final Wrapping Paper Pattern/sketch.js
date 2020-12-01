@@ -70,12 +70,12 @@ function setup() {
   slider03.style('width', '100px');
 
   //change number of cube in row
-  slider04 = createSlider(5, 20, 5, 1);
+  slider04 = createSlider(5, 10, 5, 1);
   slider04.position(cWidth + 150, 615);
   slider04.style('width', '200px');
 
   //change number of cube in col
-  slider05 = createSlider(5, 20, 5, 1);
+  slider05 = createSlider(5, 10, 5, 1);
   slider05.position(cWidth + 150, 685);
   slider05.style('width', '200px');
 
