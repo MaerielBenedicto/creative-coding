@@ -72,12 +72,12 @@ function setup() {
   //change number of cube in row
   slider04 = createSlider(5, 10, 5, 1);
   slider04.position(cWidth + 150, 615);
-  slider04.style('width', '200px');
+  slider04.style('width', '100px');
 
   //change number of cube in col
   slider05 = createSlider(5, 10, 5, 1);
   slider05.position(cWidth + 150, 685);
-  slider05.style('width', '200px');
+  slider05.style('width', '100px');
 
   //colors array
   HSB01 = [color(150, 18, 22), color(180, 89, 24), color(199,82,49), color(205, 47, 53)];
