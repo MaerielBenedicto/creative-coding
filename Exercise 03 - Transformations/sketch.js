@@ -14,15 +14,13 @@ function setup() {
 
 function draw() {
   //mouse interactivity
-  numOfSegments = round(map(mouseX, 0, width, 10, 40,true));
+  numOfSegments = map(mouseX, 0, width, 10, 40, true);
   // console.log(numOfSegments);
   stepAngle = 360/numOfSegments;
   radius = 200;
 
   push();
   translate(width/2, height/2);
-  // rotate(45);
-  fill(200, 500, 100);
   beginShape(TRIANGLE_FAN);
   vertex(0, 0);
   for (let i = 0; i <= 360; i += stepAngle) {

@@ -33,16 +33,38 @@
       </div>
     </div>
 
-    <div class="row pd justify-content-center" id="progress-div">
-      <div class="col-md-6">
+    <div class="row pd" id="progress-div">
+      <div class="col-8">
+        <h2>Description</h2>
         <p>
-          This exercise involves creating set of squares in a grid using a nested for loops. </br>
-          The colorMode() is set to HSB system which takes in 4 parameters - the mode, range for the hue, range for the saturation, range for the brightness.
+          A color scale displaying all ranges of the HSB Color System.
+        </p>
+
+        <h3>Functions</h3>
+        <p>
+          colorMode() function accepts four parameters - the mode, the range for hue/red, range for the saturation/green and range for the brightness/blue.
+          The colorMode() is set to HSB with the range for hue and saturation set to the canvas width and height and its brightness to 100.
+          <br/>
+          <br/>
+          A nested for() loop is used to create the grid to display the color range.
+        </p>
+
+        <img class="img justify-content-center" src="images/colorrange.png" />
+        <br/>
+        <h3>Mouse interactivity</h3>
+        <p>
+          The mouseX and mouseY variables are used to get the mouse position on the canvas. These are stored in the variables stepX and stepY. This variables control the size of the squares on the grid.
+        </p>
+        <br/>
+        
+        <h3>Keyboard interactivity</h3>
+        <p>
+          keyPressed() is added for keyboard interactivity.
+          If user pressed 's' or 'S', the function saveCanvas() saves the canvas as an image.
+          The function `gd.timestamp()` sets the name of the file as the date and time of when the image is saved.
         </p>
       </div>
-      <div class="col-md-6">
-        <img class="img" src="images/colorrange.png" />
-      </div>
+
     </div>
   </div>
 </body>
@@ -80,6 +102,7 @@
   .pd {
     margin-top: 10px;
     background-color: white;
+    margin: 0 auto;
   }
 
   .img {
@@ -89,6 +112,7 @@
 
   #progress-div {
     display: none;
+    margin-bottom: 100px;
   }
 
   i {

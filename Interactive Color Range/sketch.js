@@ -1,5 +1,5 @@
-//Exercise 1 - 23/09/2020
-// Create rectangle, ellipse, line and point
+// Exercise 1 - 23/09/2020
+// Create a color range scale
 
 
 function setup(){
@@ -8,7 +8,7 @@ function setup(){
   // colorMode(MODE, range for the hue/red, range for the saturation/green, range for the brightness/blue)
   colorMode(HSB, width, height, 100);
   noStroke();
-  noLoop();
+  // noLoop();
 }
 
 function draw(){
@@ -30,7 +30,7 @@ function draw(){
 function keyPressed(){
   if(key == 's' || key == 'S'){
     //saves canvas as an image - jpg or png
-    // saveCanvas('image','png');
+    saveCanvas('image','png');
     saveCanvas(gd.timestamp(), 'png');
   }
 }

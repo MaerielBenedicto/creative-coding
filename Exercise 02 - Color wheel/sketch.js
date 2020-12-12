@@ -4,10 +4,10 @@
 
 let numOfSegments = 360;
 let stepAngle = 360/numOfSegments;
-let radius = 200;
+let radius = 100;
 
 function setup(){
-  createCanvas(500,500);
+  createCanvas(300,300);
   background(255);
   // colorMode(MODE, range for the hue/red, range for the saturation/green, range for the brightness/blue)
   colorMode(HSB, 360, 100, 100);
@@ -19,10 +19,10 @@ function setup(){
 
 function draw(){
  beginShape(TRIANGLE_FAN);
- vertex(250,250);
+ vertex(150,150);
  for(let i=0; i<=360; i+=stepAngle){
-   let vx = radius*sin(i)+250;
-   let vy = radius*cos(i)+250;
+   let vx = radius*sin(i)+150;
+   let vy = radius*cos(i)+150;
    fill(i,100,100);
    vertex(vx,vy);
  }
