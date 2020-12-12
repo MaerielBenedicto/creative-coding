@@ -15,6 +15,8 @@
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
   <link href="../styles/main.css" rel="stylesheet" type="text/css">
 
+  <link href="../styles/main.css" rel="stylesheet" type="text/css">
+
   <!-- help tooltip start -->
   <script src="../libraries/jquery/jquery.js" type="text/javascript"></script>
   <script type="text/javascript" src="../libraries/tooltipster/tooltipster.bundle.js"></script>
@@ -25,47 +27,10 @@
 </head>
 
 <body>
-  <div class="container">
-    <div class="row">
-      <div class="col">
-        <h1 class="title"> Color Wheel <i class="fa fa-info-circle float-right" id="progress"></i> <i class="fa fa-play-circle float-right mr-1" id="showCanvas"></i></h1>
-      </div>
-    </div>
-
-    <div class="row pd justify-content-center" id="progress-div">
-      <div class="col-md-6">
-        <p>
-          This exercise involves creating set of squares in a grid using a nested for loops. </br>
-          The colorMode() is set to HSB system which takes in 4 parameters - the mode, range for the hue, range for the saturation, range for the brightness.
-        </p>
-      </div>
-      <div class="col-md-6">
-        <img class="img" src="images/image01.png" />
-      </div>
-    </div>
-  </div>
+  <h1 class="title"> Interactive Color Range </h1>
 </body>
-<script>
-  $(document).ready(function() {
-    $("#progress").on("click", showProgress);
-    $("#showCanvas").on("click", showCanvas);
-
-    function showProgress() {
-      $('#progress-div').css("display", "block");
-      // hide the canvas
-      canvas.style.display = "none";
-    }
-
-    function showCanvas() {
-      $('#progress-div').css("display", "none");
-      // show the canvas
-      canvas.style.display = "block";
-    }
-  });
-</script>
 <style>
   canvas {
-    /* border: 2px solid black; */
     display: block;
     margin: 0 auto;
   }
@@ -74,24 +39,6 @@
     margin-top: 50px;
     margin-bottom: 50px;
     text-align: center;
-  }
-
-  .pd {
-    margin-top: 10px;
-    background-color: white;
-  }
-
-  .img {
-    width: 400px;
-    height: 400px;
-  }
-
-  #progress-div {
-    display: none;
-  }
-
-  i {
-    font-size: 10px;
   }
 </style>
 

@@ -13,7 +13,7 @@ function setup() {
 
 function draw() {
   background(255);
-  numOfSegments = map(mouseY, 0, height, 12, 36);
+  numOfSegments = round(map(mouseX, 0, height, 12, 36,true));
   stepAngle = TWO_PI/numOfSegments;
   radius = map(mouseX, 0, width, -200, 200);
 
@@ -31,7 +31,7 @@ function draw() {
 
     let vx = (radius * sin(i));
     let vy = (radius * cos(i));
-    strokeWeight(map(mouseY, 0, height, 1, 10));
+    strokeWeight(map(mouseY, 0, height, 1, 10,true));
     stroke(col);
     line(0, 0, vx, vy);
   }

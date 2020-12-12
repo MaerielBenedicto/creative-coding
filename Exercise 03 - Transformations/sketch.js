@@ -1,4 +1,4 @@
-//Exercise 3 - 30/09/2020
+// //Exercise 3 - 30/09/2020
 let numOfSegments;
 let stepAngle;
 let radius;
@@ -13,22 +13,21 @@ function setup() {
 }
 
 function draw() {
-  background(255);
-
   //mouse interactivity
   numOfSegments = round(map(mouseX, 0, width, 10, 40,true));
-  console.log(numOfSegments);
+  // console.log(numOfSegments);
   stepAngle = 360/numOfSegments;
   radius = 200;
 
   push();
   translate(width/2, height/2);
   // rotate(45);
+  fill(200, 500, 100);
   beginShape(TRIANGLE_FAN);
   vertex(0, 0);
   for (let i = 0; i <= 360; i += stepAngle) {
-    let vx = radius * sin(i);
-    let vy = radius * cos(i);
+    let vx = radius * cos(i);
+    let vy = radius * sin(i);
     fill(i, 100, 100);
     vertex(vx, vy);
   }

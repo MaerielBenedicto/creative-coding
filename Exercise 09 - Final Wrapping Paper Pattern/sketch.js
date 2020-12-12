@@ -9,7 +9,7 @@ let cubeHeight = cHeight / numCubeHeight;
 //big cube
 let dWidth_b = cubeWidth;
 let dHeight_b = cubeWidth/2;
-let bH = dHeight_b + 30;
+let bH = cubeHeight;
 
 //small cube
 let startPointX = dHeight_b/2;
@@ -29,8 +29,8 @@ let bg;
 let backgroundColor;
 let a, b, c;
 //index variables for colors
-let i = 3;
-let index = 3;
+let i = 1;
+let index = 1;
 
 /**
  ** Control variables
@@ -148,7 +148,7 @@ function draw() {
 
   dWidth_b1 = cubeWidth;
   dHeight_b1 = cubeWidth/2;
-  bH1 = dHeight_b1 + 30;
+  bH1 = dHeight_b + 30;
 
    dWidth_s1 = cubeWidth/2;
    dHeight_s1 = cubeWidth/4;
@@ -164,11 +164,11 @@ function draw() {
   //big cubes values
   dWidth_b1 = map(input, 0, cWidth, 0, cubeWidth);
   dHeight_b1 = map(input, 0, cWidth, 0, cubeWidth/2);
-  bH1 = map(input, 0, cWidth, 0, dHeight_b + 30);
+  bH1 = map(input, 0, cWidth, 0, dHeight_b1+ 15);
 
   dWidth_b = map(input, 0, cWidth, cubeWidth, 0);
   dHeight_b = map(input, 0, cWidth, cubeWidth/2, 0);
-  bH = map(input, 0, cWidth, dHeight_b + 30, 0);
+  bH = map(input, 0, cWidth, dHeight_b + 15, 0);
 
   //control size of inner cube
   sizeC = slider03.value();
