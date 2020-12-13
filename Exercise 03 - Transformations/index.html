@@ -24,108 +24,109 @@
   <!-- help tooltip end -->
 </head>
 
-<body>
-  <div class="container">
-    <div class="row">
-      <div class="col">
-        <h1 class="title"> Interactive Color Wheel <i class="fa fa-info-circle float-right" id="progress"></i> <i class="fa fa-play-circle float-right mr-1" id="showCanvas"></i></h1>
-      </div>
-    </div>
-
-    <div class="row pd mb-5" id="progress-div">
-      <div class="col-md-6 mx-auto">
-
-        <h2>Description</h2>
-        <p>
-          An interactive color wheel that changes the number of segments depending where the mouse is.
-        </p>
-
-        <h3>Functions</h3>
-        <h4>Variables</h4>
-        <p>
-          The numOfSegments variable is the number of segments on the color wheel. The stepAngle variable is the angle of where the point is drawn. The radius variable is the radius of the circle.
-          The <span class="code">angleMode()</span> is set to DEGREES and the <span class="code">colorMode()</span> is set to HSB.
-          <br />
-          A nested <span class="code">for()</span> loop is used to create the grid to display the color range.
-        </p>
-        <br />
-        <h4>Custom Shape</h4>
-        <p>
-          A HSB Color Wheel is created using the function beginShape, vertex and endShape.
-          The <span class="code">beginShape()</span> allows for creating custom shapes. This function accepts different kind of shapes as a parameter i.e. TRIANGLE_FAN, LINES, POINTS, QUADS etc. The <span class="code">endShape()</span> stops the drawing of the shape.
-          <br /><br />
-          Inside the for loop, different points/vertex are created. The <span class="code">for()</span> loop function loops through 360 and increments by the stepAngle variable. To get the points, the sine and cosine of the angle are obtained and is multiplied by the radius
-          variable.
-          <br /><br />
-          The color of the segment is set to the 'i'.
-          <div class="code-block">
-            <span class="code">
-
-              beginShape(TRIANGLE_FAN);<br/>
-              vertex(0, 0);<br/>
-              for (let i = 0; i <= 360; i += stepAngle) {<br/>
-              &nbsp;  let vx = radius * cos(i);<br/>
-              &nbsp;  let vy = radius * sin(i);<br/>
-              &nbsp;  fill(i, 100, 100);<br/>
-              &nbsp;  vertex(vx, vy);<br/>
-              }<br/>
-              endShape();<br/>
-
-            </span>
-          </div>
-
-          <div>
-            <img class="img" src="images/image01.png" />
-          </div>
-
-        </p>
-        <br />
-        <h4><br/>Transformations</h4>
-        <p>
-          The <span class="code">push()</span> is used to save the drawing state and <span class="code">pop()</span> function restores the settings. The <span class="code">translate()</span> is used to move the color wheel to the center of the canvas. The parameters is set to width/2 and height/2.
-        </p>
-
-        <h4>Mouse interactivity</h4>
-        <p>
-          For mouse interactivity, the numOfsegments is mapped to the x position of the mouse.
-        </p>
-
-        <div class="code-block">
-          <span class="code">
-            numOfSegments = map(mouseX, 0, width, 10, 40, true);
-          </span>
+<body class="container-fluid">
+  <div class="row">
+    <div class="col">
+      <div class="row title-div">
+        <div class="col">
+          <h1 class="title"> Interactive Color Wheel <span class="icons"><i class="fa fa-play-circle-o fa-sm mr-1" id="showCanvas"></i><i class="fa fa-info-circle fa-sm" id="progress"></i></span></h1>
         </div>
+      </div>
 
-        <h4><br/>Keyboard interactivity</h4>
-        <p>
-        <span class="code">keyPressed()</span> is added for keyboard interactivity.
-          If user pressed 's' or 'S', the function <span class="code">saveCanvas()</span> saves the canvas as an image.
-          The function <span class="code">gd.timestamp()</span> sets the name of the file as the date and time of when the image is saved.
-        </p>
+      <div class="container">
+        <div class="row pd d-none" id="progress-div">
+          <div class="col-md-6">
+
+            <h2>Description</h2>
+            <p>
+              An interactive color wheel that changes the number of segments depending where the mouse is.
+            </p>
+
+            <h3>Functions</h3>
+            <h4>Variables</h4>
+            <p>
+              The numOfSegments variable is the number of segments on the color wheel. The stepAngle variable is the angle of where the point is drawn. The radius variable is the radius of the circle.
+              The <span class="code">angleMode()</span> is set to DEGREES and the <span class="code">colorMode()</span> is set to HSB.
+              <br />
+              A nested <span class="code">for()</span> loop is used to create the grid to display the color range.
+            </p>
+            <br />
+            <h4>Custom Shape</h4>
+            <p>
+              A HSB Color Wheel is created using the function beginShape, vertex and endShape.
+              The <span class="code">beginShape()</span> allows for creating custom shapes. This function accepts different kind of shapes as a parameter i.e. TRIANGLE_FAN, LINES, POINTS, QUADS etc. The <span class="code">endShape()</span> stops the
+              drawing of the shape.
+              <br /><br />
+              Inside the for loop, different points/vertex are created. The <span class="code">for()</span> loop function loops through 360 and increments by the stepAngle variable. To get the points, the sine and cosine of the angle are obtained and
+              is multiplied by the radius
+              variable.
+              <br /><br />
+              The color of the segment is set to the 'i'.
+              <div class="code-block">
+                <span class="code">
+
+                  beginShape(TRIANGLE_FAN);<br />
+                  vertex(0, 0);<br />
+                  for (let i = 0; i
+                  <= 360; i +=stepAngle) {<br />
+                  &nbsp; let vx = radius * cos(i);<br />
+                  &nbsp; let vy = radius * sin(i);<br />
+                  &nbsp; fill(i, 100, 100);<br />
+                  &nbsp; vertex(vx, vy);<br />
+                  }<br />
+                  endShape();<br />
+
+                </span>
+              </div>
+            </p>
+            <br />
+            <h4><br />Transformations</h4>
+            <p>
+              The <span class="code">push()</span> is used to save the drawing state and <span class="code">pop()</span> function restores the settings. The <span class="code">translate()</span> is used to move the color wheel to the center of the
+              canvas. The parameters is set to width/2 and height/2.
+            </p>
+
+            <h4>Mouse interactivity</h4>
+            <p>
+              For mouse interactivity, the numOfsegments is mapped to the x position of the mouse.
+            </p>
+
+            <div class="code-block">
+              <span class="code">
+                numOfSegments = map(mouseX, 0, width, 10, 40, true);
+              </span>
+            </div>
+
+            <h4><br />Keyboard interactivity</h4>
+            <p>
+              <span class="code">keyPressed()</span> is added for keyboard interactivity.
+              If user pressed 's' or 'S', the function <span class="code">saveCanvas()</span> saves the canvas as an image.
+              The function <span class="code">gd.timestamp()</span> sets the name of the file as the date and time of when the image is saved.
+            </p>
+          </div>
+          <div class="col-md-6 col2">
+            <br />
+            <h4>Iteration 01</h4>
+            <div class="div-img">
+              <img class="img" src="images/image01.png" />
+            </div>
+            <h4>Iteration 02</h4>
+            <div class="div-img">
+              <img class="img" src="images/image02.png" />
+            </div>
+            <div class="div-img">
+              <img class="img" src="images/image03.png" />
+            </div>
+            <div class="div-img">
+              <img class="img" src="images/image04.png" />
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   </div>
 </body>
-<script>
-  $(document).ready(function() {
-    $("#progress").on("click", showProgress);
-    $("#showCanvas").on("click", showCanvas);
-
-    function showProgress() {
-      console.log("WHAT");
-      $('#progress-div').css("display", "block");
-      // hide the canvas
-      canvas.style.display = "none";
-      $('#progress-div').css("display", "block");
-    }
-
-    function showCanvas() {
-      $('#progress-div').css("display", "none");
-      // show the canvas
-      canvas.style.display = "block";
-    }
-  });
-</script>
+<script src="../main.js" type="text/javascript"></script>
 <style>
   canvas {
     /* border: 2px solid black; */
@@ -138,29 +139,6 @@
     margin-bottom: 50px;
     text-align: center;
   }
-
-  .pd {
-    margin-top: 10px;
-    background-color: white;
-  }
-
-  .img {
-    width: 400px;
-    height: 400px;
-  }
-
-  #progress-div {
-    display: none;
-  }
-
-  .iframe {
-    display: none;
-  }
-
-  i {
-    font-size: 10px;
-  }
-
 </style>
 
 </html>

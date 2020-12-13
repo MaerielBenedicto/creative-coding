@@ -14,13 +14,13 @@ function setup() {
 function draw() {
   randomSeed(50);
 
-  background(255);
+  background(0);
 
 
   for (let j = 0; j < numSquares; j++) {
     for (let i = 0; i < numSquares; i++) {
-      let transValueX = i * squareSizeW + squareSizeW / 2;
-      let transValueY = j * squareSizeH + squareSizeH / 2;
+      let transValueX = i * squareSizeW;
+      let transValueY = j * squareSizeH;
       push();
       translate(transValueX, transValueY);
       noFill();

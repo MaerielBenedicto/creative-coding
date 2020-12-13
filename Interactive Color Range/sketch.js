@@ -3,7 +3,7 @@
 
 
 function setup(){
-  createCanvas(700,500);
+  createCanvas(600,500);
   background(255);
   // colorMode(MODE, range for the hue/red, range for the saturation/green, range for the brightness/blue)
   colorMode(HSB, width, height, 100);
@@ -30,7 +30,7 @@ function draw(){
 function keyPressed(){
   if(key == 's' || key == 'S'){
     //saves canvas as an image - jpg or png
-    saveCanvas('image','png');
+    // saveCanvas('image','png');
     saveCanvas(gd.timestamp(), 'png');
   }
 }
