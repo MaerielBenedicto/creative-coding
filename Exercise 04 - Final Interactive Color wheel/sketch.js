@@ -836,33 +836,33 @@ function displayTexts() {
 
 function colorSchemes() {
   complementary = createButton('Complementary');
-  complementary.position(60, 800);
+  complementary.position(60, 870);
   complementary.mousePressed(complementaryScheme);
   complementary.style('font-size', '18px');
   complementary.style("font-family", "Poppins");
 
 
   analogous = createButton('Analogous');
-  analogous.position(240, 800);
+  analogous.position(240, 870);
   analogous.mousePressed(analogousScheme);
   analogous.style('font-size', '18px');
   analogous.style("font-family", "Poppins");
 
 
   triadic = createButton('Triadic');
-  triadic.position(370, 800);
+  triadic.position(370, 870);
   triadic.mousePressed(triadicScheme);
   triadic.style('font-size', '18px');
   triadic.style("font-family", "Poppins");
 
   tetradic = createButton('Tetradic');
-  tetradic.position(460, 800);
+  tetradic.position(460, 870);
   tetradic.mousePressed(tetradicScheme);
   tetradic.style('font-size', '18px');
   tetradic.style("font-family", "Poppins");
 
   square = createButton('Square');
-  square.position(560, 800);
+  square.position(560, 870);
   square.mousePressed(squareScheme);
   square.style('font-size', '18px');
   square.style("font-family", "Poppins");
