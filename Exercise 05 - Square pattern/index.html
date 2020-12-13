@@ -31,14 +31,74 @@
       </div>
 
       <div class="row pd justify-content-center" id="progress-div">
-        <div class="col-md-6">
+        <div class="col-md-6 mx-auto">
+
+          <h2>Description</h2>
           <p>
-            This exercise involves creating set of squares in a grid using a nested for loops. </br>
-            The colorMode() is set to HSB system which takes in 4 parameters - the mode, range for the hue, range for the saturation, range for the brightness.
+            Randomly generated square within a square in a grid that changes the size and strokeWeight of the squares.
+            This uses the same methods as the 'line pattern' exercise i.e. random()
           </p>
-        </div>
-        <div class="col-md-6">
-          <img class="img" src="images/image01.png" />
+
+          <h3>Functions</h3>
+          <h4>Mapping and interactivity</h4>
+          <p>
+            The size of the squares are controlled by the x position of the mouse and is assigned to the variable r.
+            The strokeWeight is controlled by the y position of the mouse and is assigned to the variable sw.
+            <br />
+            <br />
+            <div class="code-block">
+              <span class="code">
+                let r = map(mouseX, 0, cWidth, -(squareSize/2), (squareSize/2),true);
+                let sw = map(mouseY, 0, cWidth, 0, 15,true);
+                <br />
+              </span>
+            </div>
+            <br />
+            Using the random() method, a value of either 0 or 1 is generated. An if statement is used to check if the randomNum variable is 0 or 1.
+            If its 0, the squares is drawn with the r variable substracted from the width and height of the squares.
+            If the randomNum value is 1, the squares is drawn with the r variable added to the width and height of the squares.
+            <br />
+            <br />
+            <div class="code-block">
+              <span class="code">
+                let randomNum = round(random(0, 1));
+                if (randomNum == 0) {<br />
+                  &nbsp;strokeWeight(sw);<br />
+                  &nbsp;rect(0,0,squareSize-r, squareSize-r);<br />
+                  &nbsp;rect(0,0,squareSize/2-r, squareSize/2-r);<br />
+                  &nbsp;rect(0,0,squareSize/4-r, squareSize/4-r);<br />
+                } else {<br />
+                  &nbsp;strokeWeight(3);<br />
+                  &nbsp;rect(0,0,squareSize+r, squareSize+r);<br />
+                  &nbsp;rect(0,0,squareSize/4+r, squareSize/4+r);<br />
+                  &nbsp;rect(0,0,squareSize/2+r, squareSize/2+r);<br />
+                } <br />
+              </span>
+            </div>
+            <br />
+            This created a many different outputs.
+            <br />
+            <div class="div-img">
+              <img class="img" src="images/image01.png" />
+            </div>
+            <div  class="div-img">
+              <img class="img" src="images/image02.png" />
+            </div>
+            <div  class="div-img">
+              <img class="img" src="images/image03.png" />
+            </div>
+            <div class="div-img">
+              <img class="img" src="images/image04.png" />
+            </div>
+          </p>
+          <br />
+
+          <h4><br/>Keyboard interactivity</h4>
+          <p>
+          <span class="code">keyPressed()</span> is added for keyboard interactivity.
+            If user pressed 's' or 'S', the function <span class="code">saveCanvas()</span> saves the canvas as an image.
+            The function <span class="code">gd.timestamp()</span> sets the name of the file as the date and time of when the image is saved.
+          </p>
         </div>
       </div>
     </div>
@@ -79,9 +139,17 @@
       background-color: white;
     }
 
+    .div-img{
+      height: 300px;
+      overflow: hidden;
+      margin-top: 20px;
+    }
+
     .img {
-      width: 400px;
-      height: 400px;
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      vertical-align: middle;
     }
 
     #progress-div {
