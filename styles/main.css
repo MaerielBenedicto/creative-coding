@@ -10,12 +10,16 @@ body {
 }
 
 body {
-    font-family: 'Poppins', sans-serif;
+    font-family: 'Avenir', sans-serif;
     font-size: 1rem;
 }
 
 a{
     color: black;
+}
+
+h4{
+  font-size: 1.25rem;
 }
 
 .title{
@@ -27,6 +31,14 @@ a{
 
 .sub-title{
   margin-top: 5px;
+  font-size: 1.50rem;
+  font-weight: bold;
+  text-align: center;
+}
+
+.desc{
+  margin-top: 5px;
+  font-size: 1.25rem;
   font-weight: normal;
   text-align: center;
 }
@@ -41,7 +53,7 @@ a{
 .title-div{
   background-color: #437C90;
   margin-bottom: 40px;
-  padding-bottom: 40px;
+  padding-bottom: 20px;
 }
 
 .card-img{
