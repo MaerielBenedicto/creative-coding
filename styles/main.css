@@ -48,3 +48,13 @@ a{
   object-fit: contain;
   vertical-align: middle;
 }
+
+.code-block{
+  background-color: grey;
+  padding: 20px;
+}
+.code{
+  font-family: "Courier";
+  text-align: center;
+  font-style: italic;
+}

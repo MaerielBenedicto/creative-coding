@@ -31,14 +31,38 @@
       </div>
 
       <div class="row pd justify-content-center" id="progress-div">
-        <div class="col-md-6">
+        <div class="col-md-6 mx-auto">
+
+          <h2>Description</h2>
           <p>
-            This exercise involves creating set of squares in a grid using a nested for loops. </br>
-            The colorMode() is set to HSB system which takes in 4 parameters - the mode, range for the hue, range for the saturation, range for the brightness.
+            Display colors between one color to another using   <span class="code">lerpColor</span> function.
           </p>
-        </div>
-        <div class="col-md-6">
-          <img class="img" src="images/image01.png" />
+
+          <h3>Functions</h3>
+          <h4>color()</h4>
+          <p>
+            A set of rectangles across the canvas is drawn to demonstrate the color interpolation. </br>
+            A <span class="code">for()</span> loop is used to draw sets of squares (width is 20px and the height is the height of canvas) across the x axis.
+            The <span class="code">colorMode()</span> is set to HSB color system. The <span class="code">color()</span> function creates the color and stores it into a variable. The parameters of the functions are the HSB values. The colors to use for interpolation is stored in the startColor and endColor variables.
+          </p>
+          <br />
+          <h4>lerpColor()</h4>
+          <p>
+            The <span class="code">lerpColor</span> function is used to find the third color between two colors interpolated with each other. <br/>
+            The function accepts three parameters: a color which represents the starting color - startColor variable, a color which represents the ending color - endingColor variable and the amount of interpolation between 0 and 1.
+
+            <div class="code-block">
+              <span class="code">
+                for(let x = 0; x <= width; x++){ <br/>
+                &nbsp; let startColor = color(80, 100, 100); <br/>
+                &nbsp; let endColor = color(360, 100, 100);<br/>
+                &nbsp; let col = lerpColor(startColor, endColor, x / 10);<br/>
+                &nbsp; fill(col);<br/>
+                &nbsp; rect(x * 50, 0, 20, height);<br/>
+                }<br/>
+              </span>
+            </div>
+          </p>
         </div>
       </div>
     </div>
