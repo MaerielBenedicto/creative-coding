@@ -31,14 +31,76 @@
       </div>
 
       <div class="row pd justify-content-center" id="progress-div">
-        <div class="col-md-6">
+        <div class="col-md-6 mx-auto">
+
+          <h2>Description</h2>
           <p>
-            This exercise involves creating set of squares in a grid using a nested for loops. </br>
-            The colorMode() is set to HSB system which takes in 4 parameters - the mode, range for the hue, range for the saturation, range for the brightness.
+            Randomly generated lines in a grid that changes its stroke weight depending where the mouse is.
           </p>
-        </div>
-        <div class="col-md-6">
-          <img class="img" src="images/image01.png" />
+
+          <h3>Functions</h3>
+          <h4>random()</h4>
+          <p>
+            The random method takes in two parameters which defines the range of the random value the method will output. As the random() returns a float, the rounded value is calculated.
+            The return value of the random() method is passed as a parameter in the round() method which calculates the closest integer to the value.
+            The value this returned is assigned to the randomNum variable.
+            <br />
+
+            An if statement is used to check if the randomNum variable is 0 or 1.
+            If its 0, a line is drawn from one point to another and if its 1, the line is drawn in reversed.
+            This creates an interesting pattern.
+            <br />
+            <div class="code-block">
+              <span class="code">
+                let randomNum = round(random(0, 1)); <br />
+                if (randomNum == 0) { <br />
+                  &nbsp;line(0, squareSizeH, squareSizeW, 0); <br />
+                } else { <br />
+                  &nbsp;line(0, 0, squareSizeW, squareSizeH); <br />
+                } <br />
+              </span>
+            </div>
+
+          </p>
+          <br />
+          <h4>Translation</h4>
+          <p>
+            The nested for() loop creates the grid for the line pattern to be drawn on.
+            The variables transValueX and transValueY are the translated values for each line.
+            These are then set as the parameters for translate() function.
+            <br />
+            <div class="code-block">
+              <span class="code">
+                let transValueX = i * squareSizeW + squareSizeW / 2; <br />
+                let transValueY = j * squareSizeH + squareSizeH / 2; <br />
+                <br />
+                translate(transValueX, transValueY);
+              </span>
+            </div>
+
+          </p>
+          <h4><br/>dist()</h4>
+          <p>
+            The dist() method calculates the distance between 2 points.
+            This method calculates the distance between the mouse position and the line which is assigned to the variable d.
+            The strokeWeight of the line is mapped to the d value, with the target value 2 to 6.
+            <br/>
+            <div class="code-block">
+              <span class="code">
+                let d = dist(mouseX, mouseY, i * squareSizeW, j * squareSizeH); <br/>
+                let sw = map(d, 0, width, 2, 6, true); <br/>
+                strokeWeight(sw);  <br/>
+              </span>
+            </div>
+            <br/>
+          </p>
+
+          <h4><br/>Keyboard interactivity</h4>
+          <p>
+          <span class="code">keyPressed()</span> is added for keyboard interactivity.
+            If user pressed 's' or 'S', the function <span class="code">saveCanvas()</span> saves the canvas as an image.
+            The function <span class="code">gd.timestamp()</span> sets the name of the file as the date and time of when the image is saved.
+          </p>
         </div>
       </div>
     </div>

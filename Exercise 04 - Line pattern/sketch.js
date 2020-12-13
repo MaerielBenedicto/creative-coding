@@ -1,6 +1,6 @@
 let cWidth = 900;
 let cHeight = 500;
-let numSquares = 50;
+let numSquares = 35;
 let squareSizeW = cWidth / numSquares;
 let squareSizeH = cHeight / numSquares;
 
@@ -23,15 +23,10 @@ function draw() {
       let transValueY = j * squareSizeH + squareSizeH / 2;
       push();
       translate(transValueX, transValueY);
-      // let t = atan2(mouseY - transValueY, mouseX - transValueX);
-
-      let startColor = color(60, 100, 100);
-      let endColor = color(360, 100, 100);
-      // let col = lerpColor(startColor, endColor, (i + (j * numSquares)) / width);
       noFill();
 
       let d = dist(mouseX, mouseY, i * squareSizeW, j * squareSizeH);
-      let sw = map(d, 0, width, 2, 8, true);
+      let sw = map(d, 0, width, 2, 6, true);
       strokeWeight(sw);
       stroke(i, numSquares-j,j);
 
@@ -41,7 +36,6 @@ function draw() {
       } else {
         line(0, 0, squareSizeW, squareSizeH);
       }
-
       pop();
     }
   }
