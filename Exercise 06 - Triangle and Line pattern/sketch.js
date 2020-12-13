@@ -1,5 +1,5 @@
-let cWidth = 800;
-let cHeight = 800;
+let cWidth = 700;
+let cHeight = 600;
 let numSquares = 15;
 let squareSize = cWidth / numSquares;
 

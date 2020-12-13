@@ -1,6 +1,6 @@
 let cWidth = 900;
 let cHeight = 650;
-let numCubeWidth = 7;
+let numCubeWidth = 6;
 let numCubeHeight = 5;
 let cubeWidth = cWidth / numCubeWidth;
 let cubeHeight = cHeight / numCubeHeight;
