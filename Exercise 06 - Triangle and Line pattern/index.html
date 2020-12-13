@@ -31,15 +31,78 @@
       </div>
 
       <div class="row pd justify-content-center" id="progress-div">
-        <div class="col-md-6">
+        <div class="col-md-6 mx-auto">
+
+          <h2>Description</h2>
           <p>
-            This exercise involves creating set of squares in a grid using a nested for loops. </br>
-            The colorMode() is set to HSB system which takes in 4 parameters - the mode, range for the hue, range for the saturation, range for the brightness.
+            Randomly generated triangles and lines in the canvas. Using the random() method as the other exercises, either a triangle or a line is drawn on the grid cell.
+            lerpColor() method is also used to set the colors.
           </p>
-        </div>
-        <div class="col-md-6">
-          <img class="img" src="images/image01.png" />
-        </div>
+
+          <h3>Functions</h3>
+          <h4>Triangles</h4>
+          <p>
+            To draw the triangles, beginShape(), vertex() and endShape() are used.
+            The parameter passed in the beginShape method is TRIANGLES.
+            This draws two triangles on a grid cell.
+            <br />
+            Using the random() method, a value of either 0 or 1 is generated. An if statement is used to check if the randomNum variable is 0 or 1.
+            If its 0, the triangles are drawn, and if the randomNum value is 1, a line is drawn.
+            <br />
+            <div class="code-block">
+              <span class="code">
+                let r = map(mouseX, 0, cWidth, -(squareSize/2), (squareSize/2),true);
+                let sw = map(mouseY, 0, cWidth, 0, 15,true);
+                <br />
+              </span>
+            </div>
+            <br />
+            Using the random() method, a value of either 0 or 1 is generated. An if statement is used to check if the randomNum variable is 0 or 1.
+            If its 0, the squares is drawn with the r variable substracted from the width and height of the squares.
+            If the randomNum value is 1, the squares is drawn with the r variable added to the width and height of the squares.
+            <br />
+            <br />
+            <div class="code-block">
+              <span class="code">
+                let randomNum = round(random(0, 1));<br />
+                if (randomNum == 0) {<br />
+                  <br />
+                  &nbsp;beginShape(TRIANGLES);<br />
+                  &nbsp;stroke(col);<br />
+                  &nbsp;fill(col);<br />
+                  &nbsp;vertex(0, 0);<br />
+                  &nbsp;vertex(0, squareSize);<br />
+                  &nbsp;vertex(squareSize, 0);<br />
+                  &nbsp;endShape();<br />
+                  <br />
+                  &nbsp;beginShape(TRIANGLES);<br />
+                  &nbsp;fill(col2);<br />
+                  &nbsp;stroke(col2);<br />
+                  &nbsp;vertex(squareSize, squareSize);<br />
+                  &nbsp;vertex(0, squareSize);<br />
+                  &nbsp;vertex(squareSize, 0);<br />
+                  &nbsp;endShape();<br />
+                } else {<br />
+                  &nbsp;stroke(col);<br />
+                  &nbsp;fill(col);<br />
+                  &nbsp;line(0, 0, squareSize, squareSize);<br />
+                }
+                <br />
+                 <br />
+              </span>
+            </div>
+            <br />
+            <h4>First iteration</h4>
+
+            <div class="div-img">
+              <img class="img" src="images/image01.png" />
+            </div>
+
+            <h4>Second iteration</h4>
+            <div class="div-img">
+              <img class="img" src="images/image02.png" />
+            </div>
+          </div>
       </div>
     </div>
   </body>
@@ -77,11 +140,6 @@
     .pd {
       margin-top: 10px;
       background-color: white;
-    }
-
-    .img {
-      width: 400px;
-      height: 400px;
     }
 
     #progress-div {
