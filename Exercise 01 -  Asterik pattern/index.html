@@ -31,14 +31,78 @@
       </div>
 
       <div class="row pd justify-content-center" id="progress-div">
-        <div class="col-md-6">
+        <div class="col-md-6 mx-auto">
+
+          <h2>Description</h2>
           <p>
-            This exercise involves creating set of squares in a grid using a nested for loops. </br>
-            The colorMode() is set to HSB system which takes in 4 parameters - the mode, range for the hue, range for the saturation, range for the brightness.
+            A circle with straight lines originating from the center that changes its number of segments, strokeWeight and strokeColor as mouse is moved around the canvas.
+
           </p>
-        </div>
-        <div class="col-md-6">
-          <img class="img" src="images/image01.png" />
+
+          <h3>Functions</h3>
+          <h4>Variables</h4>
+          <p>
+            The numOfSegments variable is the number of segments on the circle. The stepAngle variable is the angle of where the point is drawn. The radius variable is the radius of the circle.
+            The <span class="code">angleMode()</span> is set to its default which is RADIANS and the <span class="code">colorMode()</span> is set to HSB.
+            <br />
+          </p>
+          <br />
+          <h4>Circle Shape</h4>
+          <p>
+            Inside the for loop, different points/vertex are created. The for() loop function loops through the TWO_PI value and increments by the stepAngle variable.
+            To get the points, the sine and cosine of the angle are obtained and is multiplied by the radius variable. These points are used for the vertex() parameters.
+          </p>
+          <h4><br/>Mapping and mouse interactivity</h4>
+          <p>
+            The numOfsegments is mapped to the y position of the mouse. This controls the number of segments on the circle.
+            <br/>
+            <div class="code-block">
+              <span class="code">
+                numOfSegments = map(mouseX, 0, height, 12, 36,true);
+              </span>
+            </div>
+            <br/>
+            The lines are scaled by mapping the radius variable to the x position of the mouse.
+            The map function takes in negative 200 as the starting target range and positive 200 as ending target range.
+            <br/>
+            <div class="code-block">
+              <span class="code">
+                radius = map(mouseX, 0, width, -200, 200);
+              </span>
+            </div>
+            <br/>
+            The hue of the starting color and ending color for the lerpColor function is also mapped to the x and y positions of the mouse.
+            The third color created using the lerpColor is set as the stroke color of the lines.
+            <br/>
+            <div class="code-block">
+              <span class="code">
+                let col01 = map(mouseX, 0, width, 0, 360 ); <br/>
+                let col02 = map(mouseY, 0, width, 0, 360 );<br/>
+                <br/>
+                let startColor = color(col01, 100, 100);<br/>
+                let endColor = color(col02, 100, 100);<br/>
+                let col = lerpColor(startColor, endColor, i / height);<br/>
+                <br/>
+                stroke(col);
+              </span>
+            </div>
+            <br/>
+            The strokeWeight of the lines is mapped to the y position of the mouse.
+            This changes the thickness of the lines depending where the mouse is.
+            <br/>
+            <div class="code-block">
+              <span class="code">
+                strokeWeight(map(mouseY, 0, height, 1, 10,true));
+              </span>
+            </div>
+          </p>
+
+          <h4><br/>Keyboard interactivity</h4>
+          <p>
+          <span class="code">keyPressed()</span> is added for keyboard interactivity.
+            If user pressed 's' or 'S', the function <span class="code">saveCanvas()</span> saves the canvas as an image.
+            The function <span class="code">gd.timestamp()</span> sets the name of the file as the date and time of when the image is saved.
+          </p>
         </div>
       </div>
     </div>

@@ -6,7 +6,7 @@ let radius;
 
 function setup() {
   createCanvas(500, 500);
-  colorMode(HSB);
+  colorMode(HSB, 360, 100,100);
   background(255);
   // noLoop();
 }
@@ -22,8 +22,8 @@ function draw() {
   translate(width / 2, height / 2);
   for (let i = 0; i <= TWO_PI; i += stepAngle) {
 
-    let col01 = map(mouseX, 0, width, 0, 255 );
-    let col02 = map(mouseY, 0, width, 0, 255 );
+    let col01 = map(mouseX, 0, width, 0, 360 );
+    let col02 = map(mouseY, 0, width, 0, 360 );
 
     let startColor = color(col01, 100, 100);
     let endColor = color(col02, 100, 100);
