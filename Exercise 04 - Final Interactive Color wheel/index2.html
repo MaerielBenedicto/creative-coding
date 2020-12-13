@@ -52,20 +52,56 @@
                 - Tetradic<br />
                 - Square     <br />
               </p>
-              <h2>Description</h2>
+              <h2>Functions</h2>
               <h4>Custom Shapes</h4>
               <p>
                 The color wheel and the color markers are created using a beginShape(), vertex() and endShape() methods.
               </p>
+              <div class="code-block">
+                <span class="code">
+                  //MAIN COLOR -- NO COLOR SCHEME<br/>
+                  if (main) {<br/>
+                    &nbsp;push();<br/>
+                    &nbsp;translate(centerX, centerY);<br/>
+                    &nbsp;beginShape(TRIANGLE_FAN);<br/>
+                    &nbsp;vertex(0, 0);<br/>
+                    &nbsp;vertex(radius * sin(185), radius * cos(185));<br/>
+                    &nbsp;vertex(radius * sin(175), radius * cos(175));<br/>
+                    &nbsp;noFill();<br/>
+                    &nbsp;strokeWeight(3);<br/>
+                    &nbsp;stroke(0, 0, 100);<br/>
+                    &nbsp;endShape();<br/>
+                    &nbsp;pop();<br/>
+                  }
+                </span>
+              </div>
+              <br/>
               <h4>Transformations</h4>
               <p>
                 Transformations are used in this application: translate() to move objects at different place in the canvas and rotate() which rotates the color wheel.
                 push() and pop() are also used for different elements created in the canvas.
               </p>
+
               <h4>createButtons()</h4>
               <p>
-                The buttons for the different color schemes are created using `createButton()`. The x and y positions are hard coded.
+                The buttons for the different color schemes are created using `createButton()`.
               </p>
+              <br/>
+              <div class="code-block">
+                <span class="code">
+                  complementary = createButton('Complementary');<br/>
+                  complementary.position(60, 870);<br/>
+                  complementary.mousePressed(complementaryScheme);<br/>
+                  complementary.style('font-size', '18px');<br/>
+                  complementary.style("font-family", "Poppins");<br/>
+                </span>
+              </div>
+              <p>
+                <br/>
+                When the button is pressed, the mousePressed() method calls a function, in the snippet above, is the complementaryScheme() function. This set the color scheme mode to complementary.
+                This set the markers to complementary scheme position on the color wheel.
+              </p>
+              <br/>
               <h4>Colors</h4>
               <p>
                 The selected colors are displayed by using the `get()` function which returns the RGB color of the selected pixel.
@@ -73,17 +109,61 @@
                 The `hue(), saturation(), brightness()` of the color is then taken.
                 The `colorMode` is set back to HSB. The hue, saturation and brightness values are set as parameters for `color()` function, which then will return the color of the selected color in the color wheel.
               </p>
-
+              <br/>
+              <div class="code-block">
+                <span class="code">
+                    colorMode(RGB);  <br/>
+                    let detectA = get(centerX, centerY - 100);  <br/>
+                    let colA = color(detectA);  <br/>
+                    colorMode(HSB);  <br/>
+                    let selectedColor01 = color(hue(colA), saturation(colA), brightness(colA));  <br/>
+                    //selected color  <br/>
+                    let sc = selectedColor01;  <br/>
+                </span>
+              </div>
+              <br/>
               <h4>Displaying pattern</h4>
               <p>
                 On the right side of the application, the color palette is displayed.
                 A main color is selected and if a user moves the mouse across the x-axis, different saturation levels of the selected color is displayed. A for() loop is used to get the different saturated levels of the selected color. These are then stored in an array called palettes. A for() loop is used to loop through the palettes array and fill the rect(). The size and the number of the color displayed on the screen is controlled by the mouse position. The size of each rect() is mapped to the x position of the mouse.
               </p>
+              <br/>
+              <div class="code-block">
+                <span class="code">
+                  //loop through different saturations and push to palettes array<br/>
+                  for (let s = 75; s >= 25; s -= 25) {<br/>
+                    &nbsp;palettes.push(color(hue(selectedColor01), s, brightness(selectedColor01)));<br/>
+                  }<br/>
+                  for (let s = 75; s >= 25; s -= 25) {<br/>
+                    &nbsp;palettes.push(color(hue(selectedColor02), s, brightness(selectedColor02)));<br/>
+                  }<br/>
+<br/>
+                  //loop through palettes array<br/>
+                  for (let a = 0; a < palettes.length; a++) {<br/>
+                    &nbsp;fill(palettes[a]);<br/>
+                    &nbsp;if (mouseX >= canvasCenter) {<br/>
+                      &nbsp;&nbsp;rect(a * (canvasCenter/map(mouseX, canvasCenter, width, numColor, palettes.length)) + canvasCenter, 0, canvasCenter/map(mouseX, canvasCenter, width, numColor, palettes.length), height);<br/>
+                    &nbsp;}<br/>
+                  }<br/>
+                </span>
+              </div>
+              <br/>
 
               <h4>User Interface</h4>
               <p>
                 There are different buttons for each color schemes. A lock button is located on the right side of the palette, for users to lock the pattern on the screen, the users will then be able to spin the color wheel again and watch as the palette changes colors. If the lock variable is false, only the selected color on the color wheel are displayed when the mouse is not on the palette area. A reset button is added for users to go back to selecting only one color.
               </p>
+              <br/>
+              <div class="code-block">
+                <span class="code">
+                  if (lock) {<br/>
+                    &nbsp;rect(a * (canvasCenter / palettes.length) + canvasCenter, 0, canvasCenter / palettes.length, height);<br/>
+                  } else if (!lock) {<br/>
+                    &nbsp;rect(a * (canvasCenter / numColor) + canvasCenter, 0, canvasCenter / numColor, height);<br/>
+                  }<br/>
+                </span>
+              </div>
+              <br/>
 
             </div>
             <div class="col-md-6 col2">

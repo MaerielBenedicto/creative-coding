@@ -8,29 +8,33 @@ function setup() {
   createCanvas(700, 600);
   // colorMode(RGB, numRect, numRect, numRect);
   colorMode(HSB);
-
   background(255);
   // noLoop();
-  rSize =  width/numRect;
-  for (let i = 0; i < numRect; i++) {
-    for (let j = 0; j < numRect; j++) {
-      rects.push(new Rectangle(i, j));
-    }
-  }
 }
 
 function draw() {
   background(0);
 
-  rectMode(CENTER);
-  push();
+  rSize =  width/numRect;
+  for (let i = 0; i < numRect; i++) {
+    for (let j = 0; j < numRect; j++) {
+      push();
+      rectMode(CENTER);
+      let transValueX = i*rSize + rSize/2;
+      let transValueY = j*rSize + rSize/2;
 
-  for (let i = 0; i < rects.length; i++) {
-    push();
-    rects[i].render();
+      let startColor = color(215, 165, 218);
+      let endColor = color(75, 205, 245);
+
+      translate(transValueX, transValueY);
+      let t = atan2(mouseY - transValueY, mouseX - transValueX);
+      rotate(t);
+      let col = lerpColor(startColor, endColor, (i+j*numRect)/width);
+      fill(col);
+      rect(0, 0, rSize, rSize);
+      pop();
+    }
   }
-  pop();
-
 }
 
 //save canvas as an image function
