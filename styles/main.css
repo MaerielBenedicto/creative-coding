@@ -145,7 +145,7 @@ h4{
 }
 
 .footer{
-  height: 100px;
+  height: 150px;
   background-color: #437C90;
   justify-content: center;
 
@@ -156,9 +156,11 @@ h4{
   color: #DDD5D0;
   text-align: center;
   padding-top: 50px;
+  padding-bottom: 10px;
+  text-decoration: underline;
 }
 
 .link:hover{
-  text-decoration: none;
+  /* text-decoration: none; */
   color: #DDD5D0;
 }
