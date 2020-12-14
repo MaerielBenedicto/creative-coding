@@ -1,7 +1,6 @@
 // Exercise 1 - 23/09/2020
 // Create a color range scale
 
-
 function setup(){
   createCanvas(600,500);
   background(255);

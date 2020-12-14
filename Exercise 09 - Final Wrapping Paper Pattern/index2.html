@@ -36,15 +36,215 @@
           </div>
         </div>
         <div class="container">
-          <div class="row pd d-none" id="progress-div">
+          <div class="row pd" id="progress-div">
             <div class="col-md-6">
+              <h2>Description</h2>
               <p>
-                This exercise involves creating set of squares in a grid using a nested for loops. </br>
-                The colorMode() is set to HSB system which takes in 4 parameters - the mode, range for the hue, range for the saturation, range for the brightness.
+                A set of inner and outer cubes generated in a canvas randomly using the `random()` method.<br />
+                <br />
+
               </p>
+              <h2>Functions</h2>
+              <h4>Classes</h4>
+              <p>
+                To create the objects, classes are used. There are two classes for this exercise - InnerCube and OuterCube classes.
+                This class draws the cube object. Inside the class is a constructor() method which is used to create and initialize the object.
+                The render() method is where the vertices that draws the cube are. The cubes are created using beginShape(), vertex() and endShape() methods.
+                The four vertices are for each corner of the cube. Modulo is a math operation which finds the remainder of a number divided by another number.
+                Modulo is used to check if grid row is an even number. If 'j' is an even number, the cube's x position has a minus offset.
+                <br/>
+                <div class="code-block">
+                  <span class="code">
+                    class InnerCube {<br/>
+                      &nbsp;constructor(i, j) {<br/>
+                        &nbsp;&nbsp;this.i = i;<br/>
+                        &nbsp;&nbsp;this.j = j;<br/>
+                      &nbsp;}<br/>
+                      <br/>
+                      &nbsp;render() {..}<br/>
+                    }
+                  </span>
+                </div>
+                <br/>
+                To display and create the objects, a nested for() loop is used.
+                <br/><br/>
+                <div class="code-block">
+                  <span class="code">
+                    //create inner cubes<br/>
+                    for (let j = 0; j < numCubeHeight + 1; j++) {<br/>
+                    &nbsp;  for (let i = 0; i < numCubeWidth + 1; i++) {<br/>
+                    &nbsp;&nbsp;    inner_cubes.push(new InnerCube(i, j));<br/>
+                    &nbsp;  }<br/>
+                    }<br/>
+                    <br/>
+                    // display inner cubes<br/>
+                    push();<br/>
+                    for (let i = 0; i < inner_cubes.length; i++) {<br/>
+                    &nbsp;  inner_cubes[i].render();<br/>
+                    }<br/>
+                    pop();<br/>
+                  </span>
+                </div>
+              </p>
+              <br/>
+              <h4>random()</h4>
+              <p>
+                An array of 0s and 1s are created. This will give more a controlled randomness. Using the `random()` method, this retrieves a random value from the array. This will randomly generate the cubes on the canvas.
+              </p>
+              <div class="code-block">
+                <span class="code">
+                  let arrayNum = [0,0,1,1,1,0,1,0,1,1];<br/>
+                  let randomNum = random(arrayNum);<br/>
+<br/>
+                  if (randomNum == 1) {...}<br/>
+                </span>
+              </div>
+              <br/>
+              <h4>Colors</h4>
+              <p>
+                The colors for each face of the cube are stored in an array. A function called generateColor() where it loops through these array as user click the 'generate colour' buttons, this works the same with the background.
+              </p>
+              <div class="code-block">
+                <span class="code">
+                  //array of colors <br/>
+                  HSB01 = [color(150, 18, 22), color(180, 89, 24), color(199,82,49), color(205, 47, 53)];  <br/>
+                  HSB02 = [color(189, 100, 40), color(20, 87, 76), color(11, 64, 95), color(39, 78, 100)];  <br/>
+                  HSB03 = [color(37, 79, 100), color(29, 19, 97), color(18, 24, 100), color(43, 35, 100)];  <br/>
+<br/>
+                  //generate cube colors<br/>
+                  function generateColor() {<br/>
+                    a = HSB01[index];<br/>
+                    b = HSB02[index];<br/>
+                    c = HSB03[index];<br/>
+                    index++;<br/>
+                    if (index > HSB01.length-1) {<br/>
+                      index = 0;<br/>
+                    }<br/>
+                  }<br/>
+<br/>
+                  //snippet of a face of a cube with the fill<br/>
+                  beginShape();<br/>
+                  fill(a);<br/>
+                  noStroke();<br/>
+                  vertex(startPointX - sizeC, startPointY - sizeC/2);<br/>
+                  vertex(startPointX + dWidth_s1 / 2, 0 + sv4 - sizeC);<br/>
+                  vertex(startPointX + dWidth_s1 + sizeC , dHeight_s1 / 2 - sizeC/2);<br/>
+                  vertex(startPointX + dWidth_s1 / 2 , startPointY + dHeight_s1 / 2 - sv4);<br/>
+                  endShape(CLOSE);<br/>
+
+                </span>
+              </div>
+              <br/>
+              <h4>Control variables</h4>
+              <p>
+                User can change different variables:<br/>
+                - Resize inner cubes<br/>
+                - Change angle of outer cubes<br/>
+                - Change angle of inner cubes<br/>
+                - Change colour patterns<br/>
+                - Change background color<br/>
+                <br/>
+                The user can change these values using the sliders and buttons which are created using the `createSlider()`, `createButton()` and createP() methods.
+              </p>
+              <br/>
+              <h4>createSlider(), createButton() and createP()</h4>
+              <p>
+                createSlider() are used to control the different variables. For example, to change position of four of the vertices, the  value is either subtracted or added to the x or y value of the vertices. createButton() method is used to create the buttons to generate the alternate inner and outer cubes. createP() method is used to create an element in the DOM.
+              </p>
+              <div class="code-block">
+                <span class="code">
+                  // slider01<br/>
+                  slider01 = createSlider(0, 75, 0, 1);<br/>
+                  slider01.position(cWidth + 150, 220);<br/>
+                  slider01.style('width', '100px');<br/>
+<br/>
+                  //createButton<br/>
+                  bgButton = createButton('Generate Background');<br/>
+                  bgButton.position(cWidth + 150, 500);<br/>
+                  bgButton.mousePressed(generateBGColor);<br/>
+                  bgButton.style('background-color', color(200, 69, 90));<br/>
+                  bgButton.style('border-style', 'none');<br/>
+                  bgButton.style('width', '150px');<br/>
+                  bgButton.style('height', '50px');<br/>
+<br/>
+                  //createP<br/>
+                  let msg = createP('Change angle of outer cube');<br/>
+                  msg.position(cWidth + 150,180);<br/>
+                  msg.style('font-family','Poppins');<br/>
+                  msg.style('font-size','14px');<br/>
+                </span>
+              </div>
+              <br/>
+              <h4>Mapping</h4>
+              <p>
+                The map() method is used to control whether to display the other inner cube or the outer cube. The vertices values of the cube are mapped to the vairable called input/ sc_input, which is either set to a 0 or width of the canvas.
+              </p>
+              <div class="code-block">
+                <span class="code">
+                  //big cubes values<br/>
+                  dWidth_b1 = map(input, 0, cWidth, 0, cubeWidth);<br/>
+                  dHeight_b1 = map(input, 0, cWidth, 0, cubeWidth/2);<br/>
+                  bH1 = map(input, 0, cWidth, 0, dHeight_b1+ 15);<br/>
+                </span>
+              </div>
+
             </div>
             <div class="col-md-6 col2">
-              <img class="img" src="images/image01.png" />
+              <br />
+              <h4>Iteration 01</h4>
+              <div class="div-img">
+                <img class="img" src="images/process output/02.png" />
+              </div>
+              <br />
+              <h4>Iteration 02</h4>
+              <div class="div-img" >
+                <img class="img" src="images/process output/03.png" />
+              </div>
+              <br />
+              <h4>Iteration 03</h4>
+              <div class="div-img" >
+                <img class="img" src="images/process output/01.png" />
+              </div>
+              <h4>Iteration 04</h4>
+              <div class="div-img" >
+                <img class="img" src="images/process output/04.png" />
+              </div>
+            </div>
+          </div>
+          <div class="row" style="margin: 30px 0px 30px 0px;">
+            <div class="col">
+              <div class="row" >
+                <h4 style="text-align: center;">Different Outputs</h4>
+              </div>
+              <div class="row" style="margin-top: 20px;">
+                <div class="col col2">
+                  <img class="img" src="images/final visual outputs/visualoutput01.png" />
+                </div>
+                <div class="col col2">
+                  <img class="img" src="images/final visual outputs/visualoutput02.png" />
+                </div>
+                <div class="col col2">
+                  <img class="img" src="images/final visual outputs/visualoutput03.png" />
+                </div>
+                <div class="col col2">
+                  <img class="img" src="images/final visual outputs/visualoutput04.png" />
+                </div>
+                <div class="col col2">
+                  <img class="img" src="images/final visual outputs/visualoutput05.png" />
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="row" style="margin: 30px 0px 30px 0px;">
+            <div class="col">
+              <div class="row" >
+                <h4 style="text-align: center;"> Chocolate wrapped with the created pattern</h4>
+              </div>
+              <div class="row" style="margin-top: 20px;">
+                <div class="col col2">
+                  <img class="img" src="images/chocolate.JPG" />
+                </div>
+              </div>
             </div>
           </div>
         </div>
