@@ -47,17 +47,17 @@
               A grid of circles in which rotates where the mouse is.
             </p>
             <br/>
+            <h3>Functions</h3>
             <h4>atan2()</h4>
             <p>
-              The  <span class="span-code">atan2()</span> method calculates the angle from a specified point to an origin. This method accepts two parameters: the y co-ordinate and the x co-ordinate.
-              As  <span class="span-code">translate()</span> method is used to place each circle at its position, the y co-ordinate parameter is set to mouseY - transValueY, and the x co-ordinate parameter is set to mouseX - transValueX. The atan2() method calculates the angle between the circles and the mouse position. The circles are then rotated using this angle.
+              The <span class="span-code">atan2()</span> method calculates the angle from a specified point to an origin. This method accepts two parameters: the y co-ordinate and the x co-ordinate.
+              As  <span class="span-code">translate()</span> method is used to place each circle at its position, the y co-ordinate parameter is set to mouseY - transValueY, and the x co-ordinate parameter is set to mouseX - transValueX.
+              The <span class="span-code">atan2()</span> method calculates the angle between the circles and the mouse position. The circles are then rotated using this angle.
              </p>
-             <br/>
              <div class="code-block">
                <span class="code">
                  let t = atan2(mouseY - transValueY, mouseX - transValueX);<br/>
                  rotate(t);<br/>
-                 }
                </span>
              </div>
              <br/>
@@ -70,7 +70,6 @@
                 <span class="code">
                   let d = dist(mouseX, mouseY, transValueX, transValueY);<br/>
                   let s = map(d, 0, width, 1, 10, true);<br/>
-                  }
                 </span>
               </div>
               <br/>

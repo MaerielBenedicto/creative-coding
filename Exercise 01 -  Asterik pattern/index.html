@@ -71,7 +71,7 @@
                   <br/>
                   The lines are scaled by mapping the radius variable to the x position of the mouse.
                   The map function takes in negative 200 as the starting target range and positive 200 as ending target range.
-                  <br/>
+                  <br/><br />
                   <div class="code-block">
                     <span class="code">
                       radius = map(mouseX, 0, width, -200, 200);
@@ -80,7 +80,7 @@
                   <br/>
                   The hue of the starting color and ending color for the lerpColor function is also mapped to the x and y positions of the mouse.
                   The third color created using the <span class="span-code">lerpColor()</span> is set as the stroke color of the lines.
-                  <br/>
+                  <br/><br />
                   <div class="code-block">
                     <span class="code">
                       let col01 = map(mouseX, 0, width, 0, 360 ); <br/>
@@ -96,7 +96,7 @@
                   <br/>
                   The <span class="span-code">strokeWeight()</span> of the lines is mapped to the y position of the mouse.
                   This changes the thickness of the lines depending where the mouse is.
-                  <br/>
+                  <br/><br />
                   <div class="code-block">
                     <span class="code">
                       strokeWeight(map(mouseY, 0, height, 1, 10,true));
