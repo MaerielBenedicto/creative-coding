@@ -134,10 +134,12 @@ h4{
     /* margin-left: 30px; */
     margin: 0px auto;
     text-align: center;
+    margin-top: 5px;
 }
 
 .fa {
   font-size: 28px;
+  padding-left: 8px;
 }
 
 .col2 h4{
