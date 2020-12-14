@@ -1,10 +1,10 @@
 ### Square Pattern
 
-#Description 
+##Description 
 Randomly generated square within a square in a grid that changes the size and strokeWeight of the squares. This uses the same methods as the 'line pattern' i.e. random()
 
-#Functions
-#Mapping and interactivity
+##Functions
+##Mapping and interactivity
 The size of the squares are controlled by the x position of the mouse and is assigned to the variable r. The strokeWeight is controlled by the y position of the mouse and is assigned to the variable sw.
 
 Using the random() method, a value of either 0 or 1 is generated. An if statement is used to check if the randomNum variable is 0 or 1.
