@@ -7,7 +7,7 @@ function setup(){
   // colorMode(MODE, range for the hue/red, range for the saturation/green, range for the brightness/blue)
   colorMode(HSB, width, height, 100);
   noStroke();
-  // noLoop();
+  noLoop();
 }
 
 function draw(){
