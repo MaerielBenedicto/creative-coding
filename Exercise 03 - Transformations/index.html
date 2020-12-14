@@ -46,18 +46,18 @@
             <h4>Variables</h4>
             <p>
               The numOfSegments variable is the number of segments on the color wheel. The stepAngle variable is the angle of where the point is drawn. The radius variable is the radius of the circle.
-              The <span class="code">angleMode()</span> is set to DEGREES and the <span class="code">colorMode()</span> is set to HSB.
+              The <span class="span-code">angleMode()</span> is set to DEGREES and the <span class="span-code">colorMode()</span> is set to HSB.
               <br />
-              A nested <span class="code">for()</span> loop is used to create the grid to display the color range.
+              A nested <span class="span-code">for()</span> loop is used to create the grid to display the color range.
             </p>
             <br />
             <h4>Custom Shape</h4>
             <p>
               A HSB Color Wheel is created using the function beginShape, vertex and endShape.
-              The <span class="code">beginShape()</span> allows for creating custom shapes. This function accepts different kind of shapes as a parameter i.e. TRIANGLE_FAN, LINES, POINTS, QUADS etc. The <span class="code">endShape()</span> stops the
+              The <span class="span-code">beginShape()</span> allows for creating custom shapes. This function accepts different kind of shapes as a parameter i.e. TRIANGLE_FAN, LINES, POINTS, QUADS etc. The <span class="span-code">endShape()</span> stops the
               drawing of the shape.
               <br /><br />
-              Inside the for loop, different points/vertex are created. The <span class="code">for()</span> loop function loops through 360 and increments by the stepAngle variable. To get the points, the sine and cosine of the angle are obtained and
+              Inside the for loop, different points/vertex are created. The <span class="span-code">for()</span> loop function loops through 360 and increments by the stepAngle variable. To get the points, the sine and cosine of the angle are obtained and
               is multiplied by the radius
               variable.
               <br /><br />
@@ -82,7 +82,7 @@
             <br />
             <h4><br />Transformations</h4>
             <p>
-              The <span class="code">push()</span> is used to save the drawing state and <span class="code">pop()</span> function restores the settings. The <span class="code">translate()</span> is used to move the color wheel to the center of the
+              The <span class="span-code">push()</span> is used to save the drawing state and <span class="span-code">pop()</span> function restores the settings. The <span class="span-code">translate()</span> is used to move the color wheel to the center of the
               canvas. The parameters is set to width/2 and height/2.
             </p>
 
@@ -99,9 +99,9 @@
 
             <h4><br />Keyboard interactivity</h4>
             <p>
-              <span class="code">keyPressed()</span> is added for keyboard interactivity.
-              If user pressed 's' or 'S', the function <span class="code">saveCanvas()</span> saves the canvas as an image.
-              The function <span class="code">gd.timestamp()</span> sets the name of the file as the date and time of when the image is saved.
+              <span class="span-code">keyPressed()</span> is added for keyboard interactivity.
+              If user pressed 's' or 'S', the function <span class="span-code">saveCanvas()</span> saves the canvas as an image.
+              The function <span class="span-code">gd.timestamp()</span> sets the name of the file as the date and time of when the image is saved.
             </p>
           </div>
           <div class="col-md-6 col2">

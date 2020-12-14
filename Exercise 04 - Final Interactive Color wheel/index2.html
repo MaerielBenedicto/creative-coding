@@ -55,7 +55,7 @@
               <h2>Functions</h2>
               <h4>Custom Shapes</h4>
               <p>
-                The color wheel and the color markers are created using a beginShape(), vertex() and endShape() methods.
+                The color wheel and the color markers are created using a <span class="span-code">beginShape()</span>,  <span class="span-code">vertex()</span> and  <span class="span-code">endShape()</span> methods.
               </p>
               <div class="code-block">
                 <span class="code">
@@ -78,13 +78,13 @@
               <br/>
               <h4>Transformations</h4>
               <p>
-                Transformations are used in this application: translate() to move objects at different place in the canvas and rotate() which rotates the color wheel.
-                push() and pop() are also used for different elements created in the canvas.
+                Transformations are used in this application:  <span class="span-code">translate()</span> to move objects at different place in the canvas and  <span class="span-code">rotate()</span> which rotates the color wheel.
+                 <span class="span-code">push()</span> and  <span class="span-code">pop()</span> are also used for different elements created in the canvas.
               </p>
 
               <h4>createButtons()</h4>
               <p>
-                The buttons for the different color schemes are created using `createButton()`.
+                The buttons for the different color schemes are created using  <span class="span-code">createButton()</span>.
               </p>
               <br/>
               <div class="code-block">
@@ -98,16 +98,16 @@
               </div>
               <p>
                 <br/>
-                When the button is pressed, the mousePressed() method calls a function, in the snippet above, is the complementaryScheme() function. This set the color scheme mode to complementary.
+                When the button is pressed, the  <span class="span-code">mousePressed()</span> method calls a function, in the snippet above, is the  <span class="span-code">complementaryScheme()</span> function. This set the color scheme mode to complementary.
                 This set the markers to complementary scheme position on the color wheel.
               </p>
               <br/>
               <h4>Colors</h4>
               <p>
-                The selected colors are displayed by using the `get()` function which returns the RGB color of the selected pixel.
-                As the default return of the `get()` function, the `colorMode()` is set to RGB. The `color()` function is then used to create the colors and store it in variables.
-                The `hue(), saturation(), brightness()` of the color is then taken.
-                The `colorMode` is set back to HSB. The hue, saturation and brightness values are set as parameters for `color()` function, which then will return the color of the selected color in the color wheel.
+                The selected colors are displayed by using the  <span class="span-code">get()</span> function which returns the RGB color of the selected pixel.
+                As the default return of the  <span class="span-code">get()</span> function, the  <span class="span-code">colorMode()</span> is set to RGB. The  <span class="span-code">color()</span> function is then used to create the colors and store it in variables.
+                The  <span class="span-code">hue(), saturation(), brightness()</span> of the color is then taken.
+                The  <span class="span-code">colorMode()</span> is set back to HSB. The hue, saturation and brightness values are set as parameters for  <span class="span-code">color()</span> function, which then will return the color of the selected color in the color wheel.
               </p>
               <br/>
               <div class="code-block">
@@ -125,7 +125,7 @@
               <h4>Displaying pattern</h4>
               <p>
                 On the right side of the application, the color palette is displayed.
-                A main color is selected and if a user moves the mouse across the x-axis, different saturation levels of the selected color is displayed. A for() loop is used to get the different saturated levels of the selected color. These are then stored in an array called palettes. A for() loop is used to loop through the palettes array and fill the rect(). The size and the number of the color displayed on the screen is controlled by the mouse position. The size of each rect() is mapped to the x position of the mouse.
+                A main color is selected and if a user moves the mouse across the x-axis, different saturation levels of the selected color is displayed. A  <span class="span-code">for()</span> loop is used to get the different saturated levels of the selected color. These are then stored in an array called palettes. A  <span class="span-code">for()</span> loop is used to loop through the palettes array and fill the  <span class="span-code">rect()</span>. The size and the number of the color displayed on the screen is controlled by the mouse position. The size of each  <span class="span-code">rect()</span> is mapped to the x position of the mouse.
               </p>
               <br/>
               <div class="code-block">

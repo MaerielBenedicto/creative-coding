@@ -40,7 +40,7 @@
 
             <h2>Description</h2>
             <p>
-              Randomly generated square within a square in a grid that changes the size and strokeWeight of the squares.
+              Randomly generated square within a square in a grid that changes the size and stroke weight of the squares.
               This uses the same methods as the 'line pattern' exercise i.e. random()
             </p>
 
@@ -48,7 +48,7 @@
             <h4>Mapping and interactivity</h4>
             <p>
               The size of the squares are controlled by the x position of the mouse and is assigned to the variable r.
-              The strokeWeight is controlled by the y position of the mouse and is assigned to the variable sw.
+              The stroke weight is controlled by the y position of the mouse and is assigned to the variable sw.
               <br />
               <br />
               <div class="code-block">
@@ -59,9 +59,10 @@
                 </span>
               </div>
               <br />
-              Using the random() method, a value of either 0 or 1 is generated. An if statement is used to check if the randomNum variable is 0 or 1.
+              Using the <span class="span-code">random()</span> method, a value of either 0 or 1 is generated. An if statement is used to check if the randomNum variable is 0 or 1.
               If its 0, the squares is drawn with the r variable substracted from the width and height of the squares.
-              If the randomNum value is 1, the squares is drawn with the r variable added to the width and height of the squares.              This created a many different outputs.
+              If the randomNum value is 1, the squares is drawn with the r variable added to the width and height of the squares.
+              This created a many different outputs.
 
               <br />
               <br />
@@ -88,9 +89,9 @@
 
             <h4><br />Keyboard interactivity</h4>
             <p>
-              <span class="code">keyPressed()</span> is added for keyboard interactivity.
-              If user pressed 's' or 'S', the function <span class="code">saveCanvas()</span> saves the canvas as an image.
-              The function <span class="code">gd.timestamp()</span> sets the name of the file as the date and time of when the image is saved.
+              <span class="span-code">keyPressed()</span> is added for keyboard interactivity.
+              If user pressed 's' or 'S', the function <span class="span-code">saveCanvas()</span> saves the canvas as an image.
+              The function <span class="span-code">gd.timestamp()</span> sets the name of the file as the date and time of when the image is saved.
             </p>
           </div>
           <div class="col-md-6 col2">
