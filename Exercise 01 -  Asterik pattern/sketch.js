@@ -13,7 +13,7 @@ function setup() {
 
 function draw() {
   background(255);
-  numOfSegments = map(mouseX, 0, height, 12, 36,true);
+  numOfSegments = map(mouseX, 0, height, 12, 36, true);
   stepAngle = TWO_PI/numOfSegments;
   radius = map(mouseX, 0, width, -200, 200);
 
