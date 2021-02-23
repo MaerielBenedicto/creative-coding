@@ -20,7 +20,6 @@ class Point {
         let closestPoint = this;
     
         let distance = p5.Vector.sub(closestPoint.position, currentPoint.position);
-        // let rHeading = distance.heading();
 
         //the distance between two points (not from center)
         let rDist = distance.mag() - (currentPoint.dia/2 + closestPoint.dia/2);

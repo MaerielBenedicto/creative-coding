@@ -31,7 +31,7 @@
     <div class="col">
       <div class="row title-div">
         <div class="col-12">
-          <h1 class="title"> Random Walker </h1>
+          <h1 class="title"> Curve Vertex </h1>
         </div>
         <div class="col-12 icons">
           <i class="fa fa-play-circle-o fa-sm mr-1" id="showCanvas"></i><i class="fa fa-info-circle fa-sm"
@@ -45,31 +45,43 @@
 
             <h2>Description</h2>
             <p>
-              This sketch shows the path of a ‘dumb’ agent. The colour of the ellipse is randomly generated from an array of colors. 
+              Using curveVertex to draw a circle. 
             </p>
 
-            <h3>Random Walker</h3>
-            <h4>Create the walker</h4>
+            <h4>Point and Curve Classes</h4>
             <p>
-              The walker (ellipse) is placed in the center of the canvas, with its set diameter. The initial color of the ellipse is set in the <span
-              class="span-code">set up()</span> function. 
-              As the walker moves in the canvas, the fill color of the walker is randomly generated using the 
-              <span class="span-code">random()</span> function, which generates a value from the array of colors. Depending on the random value, the color is then set. 
+              A Point class is used to create an object with its x and y co-ordinates, using the function <span class="span-code">createVector()</span>. 
+              A Curve class is also created which takes in the x and y position of the point objects. 
+ 
             </p>
-            <h4>Move the walker</h4>
+            <h4>drawPoints()</h4>
             <p>
-              Arrays called optionsX and optionsY are created. These have the values [-1,0,1]. 
-              These values indicates the direction of the walker. 
-              Using the <span
-              class="span-code">random()</span> function, the direction is generated and the walker is moved based on this value and the stepSize.
+              In the <span class="span-code">drawPoints()</span> function, the objects are created. Using a for loop, a number of points is created. 
+              By varying the angle and using trigonometry to calculate each point for that angle. 
+              To get the (x,y) position, the cos(angle) and sin(angle) is used, with the radius multiplied to it. 
+              These x and y values are then used to created the points objects and is pushed into points array. 
+              The curves objects are also created which are pushed into the curves array.
               <br />
+              These points can be seen by drawing an ellipse at the x and y position. The <span class="span-code">circle()</span> method in the Point class draw these ellipses. 
             </p>
             <br />
-            <h4>Check borders</h4>
+            <h4>curveVertex()</h4>
             <p>
-              To ensure that the walker stays on the canvas, a check is performed. These if statements check if the x and y positions of the walker is within the boundaries of the canvas. 
+              The curveVertex is used to specify the vertex coordinates used to draw a curve. This function can only be used between the <span class="span-code">beginShape()</span> and <span class="span-code">endShape()</span>.  
+              In the <span class="span-code">draw()</span>) function, the <span class="span-code">curve()</span> method of the first controlled point is called. 
+              The <span class="span-code">curve()</span> method is where the curve vertices are drawn which forms the circle. 
+              The first and last vertices are used to guide the beginning and end of a curve.
             </p>
 
+            <h4>Animate</h4>
+            <p>
+              To create a blob like circle, Perlin Noise is used. Each point of the circle moves by calculating a new x and y positions. 
+              Using <span class="span-code">map()</span> function, the <span class="span-code">cos()</span> and <span class="span-code">sin()</span> values goes from -1 to 1 and is mapped to 0 to 3. 
+              The new x and y positions is then passed to the  <span class="span-code">update()</span> method of the curve and point objects. This updates the x and y position. 
+              <br />
+              To move the ‘blob’,  variables moveX and moveY is incremented by 0.5. To ensure that the object stays inside the canvas, a check is performed. 
+            </p>
+          
             <h4><br />Keyboard interactivity</h4>
             <p>
               <span class="span-code">keyPressed()</span> is added for keyboard interactivity.
@@ -78,10 +90,8 @@
               The function <span class="span-code">gd.timestamp()</span> sets the name of the file as the date and time
               of when the image is saved.
               <br/>
-              If the user press the delete, the canvas is cleared. 
+              If the user press the delete, the sketch restarts.
               <br/>
-              If user press the numbers 1, 2 or 3, the stepSize of the walker changes. 
-
             </p>
 
           </div>

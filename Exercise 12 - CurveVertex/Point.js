@@ -5,7 +5,7 @@ class Point {
 
     circle() {
         push();
-        translate(originX, originY);        
+        translate(centerX, centerY);        
         //for each point draw circle
         fill(0);
         ellipse(this.position.x, this.position.y, 10, 10);

@@ -16,7 +16,7 @@ let numPoints = 500;
 let col;
 
 function setup() {
-  createCanvas(1000, 500);
+  createCanvas(800, 500);
   background(255);
   // noLoop();
   initialPoint();

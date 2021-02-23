@@ -44,29 +44,45 @@
 
             <h2>Description</h2>
             <p>
-              This sketch shows the path of a ‘dumb’ agent. The colour of the ellipse is randomly generated from an array of colors. 
+              A circle at the center of the canvas with random other circles created at random points and is reposition to the circle closest to it. 
             </p>
 
-            <h3>Random Walker</h3>
-            <h4>Create the walker</h4>
+            <h4>Create the first point</h4>
             <p>
-              The walker (ellipse) is placed in the center of the canvas, with its set diameter. The initial color of the ellipse is set in the <span
-              class="span-code">set up()</span> function. 
-              As the walker moves in the canvas, the fill color of the walker is randomly generated using the 
-              <span class="span-code">random()</span> function, which generates a value from the array of colors. Depending on the random value, the color is then set. 
+              A point object is created using the Point class. The point class has the x and y coordinates and diameter of the circle. 
+              The initial point in created in the <span class="span-code">initialPoint()</span>  function. 
+              The color of the stroke is set randomly, x and y position is set to the center of the canvas.  
+              The point object is pushed into the points array.  The <span class="span-code">render()</span>  method draws the circle. 
             </p>
-            <h4>Move the walker</h4>
+            <h4>Create other points</h4>
             <p>
-              Arrays called optionsX and optionsY are created. These have the values [-1,0,1]. 
-              These values indicates the direction of the walker. 
-              Using the <span
-              class="span-code">random()</span> function, the direction is generated and the walker is moved based on this value and the stepSize.
+              The <span class="span-code">generateRandomPoints()</span> function is where new point is created. The x and y position and the diameter is set randomly. 
               <br />
             </p>
             <br />
-            <h4>Check borders</h4>
+            <h4>Find the closest point</h4>
             <p>
-              To ensure that the walker stays on the canvas, a check is performed. These if statements check if the x and y positions of the walker is within the boundaries of the canvas. 
+              To find the closest point, the <span class="span-code">dist()</span> function is used. This calculates the distance between two points: the points in the array and the new point created.
+               If the point has the lowest distance, that is set as the closest.  Once the closest point is identified, the point is stored in the closestPoint variable. 
+               <br/>
+               The <span class="span-code">dock()</span> method of closest point is then called passing the new point as parameter. 
+
+            </p>
+            <h4>dock()</h4>
+            <p>
+              The <span class="span-code">dock()</span> method accepts the new point object. This is set as the current point. 
+              The distances between the current point and closest point is calculated using the <span class="span-code">p5.Vector.sub()</span>. 
+              This returns the resultant vector of the two points. To calculate the magnitude of the resultant vector, <span class="span-code">mag()</span> is used. 
+              To calculate the angle and direction <span class="span-code">atan2()</span> is used. The new x and y position is then updated by substracting the calculated distance from the current point position. 
+              The <span class="span-code">render()</span> method of the current point is then called with the new x and y position. 
+
+               <br/>
+               After docking the new point to its new position, the new point is then added to the points array. 
+            </p>
+
+            <h4>Restart growth</h4>
+            <p>
+              If the points array reached the set max number of points, the canvas is cleared and the<span class="span-code">initialPoint()</span> function is called. 
             </p>
 
             <h4><br />Keyboard interactivity</h4>
@@ -77,10 +93,8 @@
               The function <span class="span-code">gd.timestamp()</span> sets the name of the file as the date and time
               of when the image is saved.
               <br/>
-              If the user press the delete, the canvas is cleared. 
+              If the user press the delete, the sketch restarts. 
               <br/>
-              If user press the numbers 1, 2 or 3, the stepSize of the walker changes. 
-
             </p>
 
           </div>

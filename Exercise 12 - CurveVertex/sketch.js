@@ -5,7 +5,8 @@ let numOfSegments = 5;
 let points = [];
 let curves = [];
 
-let angle, originX, originY;
+let angle, centerX, centerY;
+
 let xoff = 0.0;
 let yoff = 0.0;
 let stepSize = 1;
@@ -22,8 +23,10 @@ let colors = [0, 0, 0, 0, 0, 0, 0, 1, 1];
 function setup() {
     createCanvas(900, 500);
     background(255);
-    originX = 0;
-    originY = 0;
+    // noLoop();   
+    centerX = width/2;
+    centerY = height/2;
+
     col = color(0, 0, 0);
     angle = radians(360 / numOfSegments);
     drawPoints();
@@ -51,27 +54,27 @@ function draw() {
     for (let i = 0; i < speed; i++) {
         for (let j = 0; j < points.length; j++) {
             push();
-            xoff = map(cos(j), -1, 1, 0, 1);
-            yoff = map(sin(j), -1, 1, 0, 1);
-            noiseValue = map(noise(xoff, yoff, t), 0, 1, 0, 1);
+            xoff = map(cos(j), -1, 1, 0, 3);
+            yoff = map(sin(j), -1, 1, 0, 3);
+            noiseValue = noise(xoff, yoff, t);
 
             _xPos = radius * cos(angle * j) * noiseValue;
             _yPos = radius * sin(angle * j) * noiseValue;
 
             //check boundaries
-            if (originX + moveX + curves[j].x > width) {
+            if (moveX + curves[j].x > width) {
                 curves[j].x = 0;
                 moveX = 0;
                 centerX = 0;
             }
 
-            if (originY + moveY + curves[j].y > height) {
+            if (moveY + curves[j].y > height) {
                 curves[j].y = 0;
                 moveY = 0;
                 centerY = 0;
             }
 
-            curves[j].render(_xPos, _yPos);
+            curves[j].update(_xPos, _yPos);
             points[j].update(_xPos, _yPos);
             pop();
         }
@@ -84,16 +87,11 @@ function draw() {
         (randomColor == 0) ? (col = color(0, 0, 0, 50)) : null;
         (randomColor == 1) ? (col = color(18, 237, 213, 50)) : null;
 
-        push();
-        translate(originX, originY);
-        beginShape();
-        stroke(col);
-        noFill();
+        
         // first controlled point
-        curves[curves.length - 1].curve(moveX, moveY);
-        endShape();
-        pop();
+        curves[curves.length - 1].curve();
 
+        //increment noise (third dimension)
         t += 0.01;
     }
 }
