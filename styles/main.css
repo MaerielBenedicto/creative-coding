@@ -5,7 +5,7 @@ body {
 }
 
 body {
-    background-color: #fff;s
+    background-color: #fff;
     /* background-color: grey; */
 }
 
@@ -16,10 +16,38 @@ body {
 
 a{
     color: black;
+    text-decoration: none;
 }
+
+a:hover{
+  text-decoration: none;
+  cursor: pointer;
+}
+
+
 
 h4{
   font-size: 1.25rem;
+}
+
+nav a{
+  color: white;
+  text-decoration: none;
+}
+
+nav a:hover{
+  text-decoration: none;
+  color: white;
+  cursor: pointer;
+}
+
+.navbar-brand {
+  color:white;
+}
+
+
+.custom-navbar{
+  background-color: #437C90;
 }
 
 .title{
@@ -33,6 +61,11 @@ h4{
 .card-title a:hover{
   text-decoration: none;
 }
+
+.sketch-title{
+  /* border-bottom: #437C90 solid 1px; */
+}
+
 
 .sub-title{
   margin-top: 5px;

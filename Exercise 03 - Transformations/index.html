@@ -9,10 +9,12 @@
   <script src="../libraries/p5/p5.dom.min.js" type="text/javascript"></script>
   <script src="../libraries/generative-design-library/generative-design-library.js" type="text/javascript"></script>
 
-  <script src="sketch.js" type="text/javascript"></script>
+  <!-- <script src="sketch.js" type="text/javascript"></script> -->
+
   <!-- font-awesome -->
   <script src="https://use.fontawesome.com/8d05b3eeca.js"></script>
-  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+    integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
   <link href="../styles/main.css" rel="stylesheet" type="text/css">
 
   <!-- help tooltip start -->
@@ -26,46 +28,68 @@
 
 <body class="container-fluid">
   <div class="row">
-    <div class="col">
-      <div class="row title-div">
-        <div class="col-12">
-          <h1 class="title"> Interactive Color Wheel</h1>
+    <div class="col p-0">
+      <!-- NAVBAR -->
+      <nav class="navbar custom-navbar">
+        <div class="container">
+          <a class="navbar-brand" href="../index.html">My Portfolio.</a>
+          <a class="float-right">Github</a>
         </div>
-        <div class="col-12 icons">
-          <i class="fa fa-play-circle-o fa-sm mr-1" id="showCanvas"></i><i class="fa fa-info-circle fa-sm" id="progress"></i>
-          <span class="home"><a href="../index.html" class="home">Home</a></span>
-        </div>
-      </div>
+      </nav>
+      <!-- END OF NAVBAR -->
 
-      <div class="container">
-        <div class="row pd d-none" id="progress-div">
-          <div class="col-md-6">
+      <section>
+        <div class="container">
+          <!-- SKETCH TITLE -->
+          <div class="row mb-5 pt-5 sketch-title">
+            <div class="col-md-12 col-lg-6 mb-4 mb-lg-0 justify-content-center">
+              <h2>Interactive Color Wheel</h2>
+            </div>
+          </div>
+          <!-- END OF SKETCH TITLE -->
 
-            <h2>Description</h2>
-            <p>
-              An interactive color wheel that changes the number of segments depending where the mouse is.
-            </p>
+          <!-- CANVAS -->
+          <div class="row justify-content-center p-5">
+            <iframe src="canvas.html" title="interactive color range" width="600" height="500" frameborder="0"
+              scrolling="no"></iframe>
+          </div>
+          <!-- END OF CANVAS -->
 
-            <h3>Functions</h3>
-            <h4>Variables</h4>
-            <p>
-              The numOfSegments variable is the number of segments on the color wheel. The stepAngle variable is the angle of where the point is drawn. The radius variable is the radius of the circle.
-              The <span class="span-code">angleMode()</span> is set to DEGREES and the <span class="span-code">colorMode()</span> is set to HSB.
+          <div class="row pd">
+            <div class="col-md-6">
+
+              <h2>Description</h2>
+              <p>
+                An interactive color wheel that changes the number of segments depending where the mouse is.
+              </p>
+
+              <h3>Functions</h3>
+              <h4>Variables</h4>
+              <p>
+                The numOfSegments variable is the number of segments on the color wheel. The stepAngle variable is the
+                angle of where the point is drawn. The radius variable is the radius of the circle.
+                The <span class="span-code">angleMode()</span> is set to DEGREES and the <span
+                  class="span-code">colorMode()</span> is set to HSB.
+                <br />
+                A nested <span class="span-code">for()</span> loop is used to create the grid to display the color
+                range.
+              </p>
               <br />
-              A nested <span class="span-code">for()</span> loop is used to create the grid to display the color range.
-            </p>
-            <br />
-            <h4>Custom Shape</h4>
-            <p>
-              A HSB Color Wheel is created using the function beginShape, vertex and endShape.
-              The <span class="span-code">beginShape()</span> allows for creating custom shapes. This function accepts different kind of shapes as a parameter i.e. TRIANGLE_FAN, LINES, POINTS, QUADS etc. The <span class="span-code">endShape()</span> stops the
-              drawing of the shape.
-              <br /><br />
-              Inside the for loop, different points/vertex are created. The <span class="span-code">for()</span> loop function loops through 360 and increments by the stepAngle variable. To get the points, the sine and cosine of the angle are obtained and
-              is multiplied by the radius
-              variable.
-              <br /><br />
-              The color of the segment is set to the 'i'.
+              <h4>Custom Shape</h4>
+              <p>
+                A HSB Color Wheel is created using the function beginShape, vertex and endShape.
+                The <span class="span-code">beginShape()</span> allows for creating custom shapes. This function accepts
+                different kind of shapes as a parameter i.e. TRIANGLE_FAN, LINES, POINTS, QUADS etc. The <span
+                  class="span-code">endShape()</span> stops the
+                drawing of the shape.
+                <br /><br />
+                Inside the for loop, different points/vertex are created. The <span class="span-code">for()</span> loop
+                function loops through 360 and increments by the stepAngle variable. To get the points, the sine and
+                cosine of the angle are obtained and
+                is multiplied by the radius
+                variable.
+                <br /><br />
+                The color of the segment is set to the 'i'.
               <div class="code-block">
                 <span class="code">
 
@@ -82,51 +106,57 @@
 
                 </span>
               </div>
-            </p>
-            <br />
-            <h4><br />Transformations</h4>
-            <p>
-              The <span class="span-code">push()</span> is used to save the drawing state and <span class="span-code">pop()</span> function restores the settings. The <span class="span-code">translate()</span> is used to move the color wheel to the center of the
-              canvas. The parameters is set to width/2 and height/2.
-            </p>
+              </p>
+              <br />
+              <h4><br />Transformations</h4>
+              <p>
+                The <span class="span-code">push()</span> is used to save the drawing state and <span
+                  class="span-code">pop()</span> function restores the settings. The <span
+                  class="span-code">translate()</span> is used to move the color wheel to the center of the
+                canvas. The parameters is set to width/2 and height/2.
+              </p>
 
-            <h4>Mouse interactivity</h4>
-            <p>
-              For mouse interactivity, the numOfsegments is mapped to the x position of the mouse.
-            </p>
+              <h4>Mouse interactivity</h4>
+              <p>
+                For mouse interactivity, the numOfsegments is mapped to the x position of the mouse.
+              </p>
 
-            <div class="code-block">
-              <span class="code">
-                numOfSegments = map(mouseX, 0, width, 10, 40, true);
-              </span>
-            </div>
+              <div class="code-block">
+                <span class="code">
+                  numOfSegments = map(mouseX, 0, width, 10, 40, true);
+                </span>
+              </div>
 
-            <h4><br />Keyboard interactivity</h4>
-            <p>
-              <span class="span-code">keyPressed()</span> is added for keyboard interactivity.
-              If user pressed 's' or 'S', the function <span class="span-code">saveCanvas()</span> saves the canvas as an image.
-              The function <span class="span-code">gd.timestamp()</span> sets the name of the file as the date and time of when the image is saved.
-            </p>
-          </div>
-          <div class="col-md-6 col2">
-            <br />
-            <h4>Iteration 01</h4>
-            <div class="div-img">
-              <img class="img" src="images/image01.png" />
+              <h4><br />Keyboard interactivity</h4>
+              <p>
+                <span class="span-code">keyPressed()</span> is added for keyboard interactivity.
+                If user pressed 's' or 'S', the function <span class="span-code">saveCanvas()</span> saves the canvas as
+                an image.
+                The function <span class="span-code">gd.timestamp()</span> sets the name of the file as the date and
+                time of when the image is saved.
+              </p>
             </div>
-            <h4>Iteration 02</h4>
-            <div class="div-img">
-              <img class="img" src="images/image02.png" />
-            </div>
-            <div class="div-img">
-              <img class="img" src="images/image03.png" />
-            </div>
-            <div class="div-img">
-              <img class="img" src="images/image04.png" />
+            <div class="col-md-6 col2">
+              <br />
+              <h4>Iteration 01</h4>
+              <div class="div-img">
+                <img class="img" src="images/image01.png" />
+              </div>
+              <h4>Iteration 02</h4>
+              <div class="div-img">
+                <img class="img" src="images/image02.png" />
+              </div>
+              <div class="div-img">
+                <img class="img" src="images/image03.png" />
+              </div>
+              <div class="div-img">
+                <img class="img" src="images/image04.png" />
+              </div>
             </div>
           </div>
         </div>
-      </div>
+      </section>
+
     </div>
   </div>
 </body>
@@ -137,7 +167,6 @@
     display: block;
     margin: 0 auto;
   }
-
 </style>
 
 </html>

@@ -9,11 +9,12 @@
   <script src="../libraries/p5/p5.dom.min.js" type="text/javascript"></script>
   <script src="../libraries/generative-design-library/generative-design-library.js" type="text/javascript"></script>
 
-  <script src="sketch.js" type="text/javascript"></script>
+  <!-- <script src="sketch.js" type="text/javascript"></script> -->
 
   <!-- font-awesome -->
   <script src="https://use.fontawesome.com/8d05b3eeca.js"></script>
-  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+    integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
   <link href="../styles/main.css" rel="stylesheet" type="text/css">
 
   <!-- help tooltip start -->
@@ -27,31 +28,52 @@
 
 <body class="container-fluid">
   <div class="row">
-    <div class="col">
-      <div class="row title-div">
-        <div class="col-12">
-          <h1 class="title"> Interactive Color Range</h1>
+    <div class="col p-0">
+      <!-- NAVBAR -->
+      <nav class="navbar custom-navbar">
+        <div class="container">
+          <a class="navbar-brand" href="../index.html">My Portfolio.</a>
+          <a class="float-right">Github</a>
         </div>
-        <div class="col-12 icons">
-          <i class="fa fa-play-circle-o fa-sm mr-1" id="showCanvas"></i><i class="fa fa-info-circle fa-sm" id="progress"></i>
-          <span class="home"><a href="../index.html" class="home">Home</a></span>
-        </div>
-      </div>
-      <div class="container">
-        <div class="row pd d-none" id="progress-div">
-          <div class="col-md-6">
-            <h2>Description</h2>
-            <p>
-              A color scale displaying all ranges of the HSB Color System. <br/>
-              <span style="color: #61c0ee; font-size: 16px;">Note: The noLoop() method is on.</span>
-            </p>
+      </nav>
+      <!-- END OF NAVBAR -->
 
-            <h3>Functions</h3>
-            <h4>colorMode()</h4>
-            <p>
-              <span class="span-code">colorMode()</span> function accepts four parameters - the mode, the range for hue/red, range for the saturation/green and range for the brightness/blue.
-              The <span class="span-code">colorMode()</span> is set to HSB with the range for hue and saturation set to the canvas width and height and its brightness to 100.
-              <br />
+
+      <section>
+      <div class="container">
+
+        <!-- SKETCH TITLE -->
+        <div class="row mb-5 pt-5 sketch-title">
+          <div class="col-md-12 col-lg-6 mb-4 mb-lg-0 justify-content-center">
+            <h2>Interactive Color Range</h2>
+          </div>
+        </div>
+          <!-- END OF SKETCH TITLE -->
+
+          <!-- CANVAS -->
+          <div class="row justify-content-center p-5">
+            <iframe src="canvas.html" title="interactive color range" width="600" height="500"
+              frameborder="0" scrolling="no"></iframe>
+          </div>
+          <!-- END OF CANVAS -->
+
+          <!-- DESCRIPTION -->
+          <div class="row pd">
+            <div class="col-md-6">
+              <h2>Description</h2>
+              <p>
+                A color scale displaying all ranges of the HSB Color System. <br />
+                <span style="color: #61c0ee; font-size: 16px;">Note: The noLoop() method is on.</span>
+              </p>
+
+              <h3>Functions</h3>
+              <h4>colorMode()</h4>
+              <p>
+                <span class="span-code">colorMode()</span> function accepts four parameters - the mode, the range for
+                hue/red, range for the saturation/green and range for the brightness/blue.
+                The <span class="span-code">colorMode()</span> is set to HSB with the range for hue and saturation set
+                to the canvas width and height and its brightness to 100.
+                <br />
               <div class="code-block">
                 <span class="code">
                   colorMode(HSB, width, height, 100);
@@ -59,63 +81,63 @@
               </div>
               <br />
               A nested <span class="span-code">for()</span> loop is used to create the grid to display the color range.
-            </p>
-            <br />
-            <h4>Mouse interactivity</h4>
-            <p>
-              The mouseX and mouseY variables are used to get the mouse position on the canvas. These are stored in the variables stepX and stepY. This variables control the size of the squares on the grid.
-            </p>
-            <br />
-            <div class="code-block">
-              <span class="code">
+              </p>
+              <br />
+              <h4>Mouse interactivity</h4>
+              <p>
+                The mouseX and mouseY variables are used to get the mouse position on the canvas. These are stored in
+                the variables stepX and stepY. This variables control the size of the squares on the grid.
+              </p>
+              <br />
+              <div class="code-block">
+                <span class="code">
 
-                let stepX = mouseX + 1;<br />
-                let stepY = mouseY + 1;<br />
+                  let stepX = mouseX + 1;<br />
+                  let stepY = mouseY + 1;<br />
 
-                for (let x = 0; x < width; x += stepX) {<br />
-                &nbsp; for (let y = 0; y < height;  y += stepY) {<br />
-                  &nbsp;&nbsp;  fill(x, height - y, 100);<br />
+                  for (let x = 0; x
+                  < width; x +=stepX) {<br />
+                  &nbsp; for (let y = 0; y
+                  < height; y +=stepY) {<br />
+                  &nbsp;&nbsp; fill(x, height - y, 100);<br />
                   &nbsp; &nbsp;rect(x, y, stepX, stepY);<br />
                   &nbsp;&nbsp;}<br />
-                }<br />
+                  }<br />
 
-              </span>
-            </div>
+                </span>
+              </div>
 
-            <h4><br />Keyboard interactivity</h4>
-            <p>
-              <span class="span-code">keyPressed()</span> is added for keyboard interactivity.
-              If user pressed 's' or 'S', the function <span class="span-code">saveCanvas()</span> saves the canvas as an image.
-              The function <span class="span-code">gd.timestamp()</span>sets the name of the file as the date and time of when the image is saved.
-            </p>
+              <h4><br />Keyboard interactivity</h4>
+              <p>
+                <span class="span-code">keyPressed()</span> is added for keyboard interactivity.
+                If user pressed 's' or 'S', the function <span class="span-code">saveCanvas()</span> saves the canvas as
+                an image.
+                The function <span class="span-code">gd.timestamp()</span>sets the name of the file as the date and time
+                of when the image is saved.
+              </p>
+            </div>
+            <div class="col-md-6 col2">
+              <br />
+              <h4>Iteration 01</h4>
+              <div class="div-img">
+                <img class="img" src="images/colorrange.png" />
+              </div>
+              <h4>Iteration 02</h4>
+              <div class="div-img">
+                <img class="img" src="images/image01.png" />
+              </div>
+              <div class="div-img">
+                <img class="img" src="images/image02.png" />
+              </div>
+            </div>
           </div>
-          <div class="col-md-6 col2">
-            <br />
-            <h4>Iteration 01</h4>
-            <div class="div-img">
-              <img class="img" src="images/colorrange.png" />
-            </div>
-            <h4>Iteration 02</h4>
-            <div class="div-img">
-              <img class="img" src="images/image01.png" />
-            </div>
-            <div class="div-img">
-              <img class="img" src="images/image02.png" />
-            </div>
-          </div>
+          <!-- END OF DESCRIPTION -->
         </div>
-      </div>
+      </section>
+
     </div>
   </div>
 </body>
 <script src="../main.js" type="text/javascript"></script>
-<style>
-  canvas {
-    /* border: 2px solid black; */
-    display: block;
-    margin: 0 auto;
-  }
-
-</style>
 
 </html>
