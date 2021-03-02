@@ -1,15 +1,17 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <meta charset="UTF-8">
-    <title>MyPortfolio</title>
-    <!-- font-awesome -->
-    <script src="https://use.fontawesome.com/8d05b3eeca.js"></script>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
-    <link href="../styles/main.css" rel="stylesheet" type="text/css">
-  </head>
 
-  <body class="container-fluid">
+<head>
+  <meta charset="UTF-8">
+  <title>MyPortfolio</title>
+  <!-- font-awesome -->
+  <script src="https://use.fontawesome.com/8d05b3eeca.js"></script>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+    integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+  <link href="../styles/main.css" rel="stylesheet" type="text/css">
+</head>
+
+<body class="container-fluid">
   <div class="row">
     <div class="col p-0">
       <!-- NAVBAR -->
@@ -23,13 +25,13 @@
 
       <section>
         <div class="container">
-          
-        <!-- CANVAS -->
-        <div class="container-fluid justify-content-center pt-5">
-          <iframe src="canvas.html" title="interactive color range" width="600" height="500" frameborder="0"
-            scrolling="no"></iframe>
-        </div>
-        <!-- END OF CANVAS -->
+
+          <!-- CANVAS -->
+          <div class="row justify-content-center pt-5">
+            <iframe src="canvas.html" title="interactive color range" width="600" height="500" frameborder="0"
+              scrolling="no"></iframe>
+          </div>
+          <!-- END OF CANVAS -->
 
           <!-- SKETCH TITLE -->
           <div class="row mb-5 pt-5 sketch-title">
@@ -41,55 +43,64 @@
 
           <!-- DESCRIPTION -->
           <div class="row pd">
-          <div class="col-md-6">
+            <div class="col-md-6">
 
-            <h2>Description</h2>
-            <p>
-              A point bouncing off the edges at random angles. 
-            </p>
+              <h2>Description</h2>
+              <p>
+                A point bouncing off the edges at random angles.
+              </p>
 
-           <h4>Create point</h4>
-            <p>
-              A Point class is created, which creates a point object. 
-              Using the <span class="span-code">createVector()</span> function, the x and y co-ordinates of the point is created. 
-              It also has the properties: angle, s (strokeWeight) and color.  
+              <h4>Create point</h4>
+              <p>
+                A Point class is created, which creates a point object.
+                Using the <span class="span-code">createVector()</span> function, the x and y co-ordinates of the point
+                is created.
+                It also has the properties: angle, s (strokeWeight) and color.
 
-            </p>
-            <h4>createPoint() function </h4>
-            <p>
-              createPoint function creates a new point object and pushes it into the points array. 
-              This function takes in xpos, ypos and _a (angle) arguments. In the <span class="span-code">set up()</span> function, the first point is placed on (0,0) origin with a 45 degrees angle. 
+              </p>
+              <h4>createPoint() function </h4>
+              <p>
+                createPoint function creates a new point object and pushes it into the points array.
+                This function takes in xpos, ypos and _a (angle) arguments. In the <span class="span-code">set
+                  up()</span> function, the first point is placed on (0,0) origin with a 45 degrees angle.
+                <br />
+                The Point class have an <span class="span-code">update()</span> method which updates the x and y
+                co-ordinates of the point.
+                The point is moved using the <span class="span-code">sin()</span> and <span
+                  class="span-code">cos()</span>.
+                The background is not set at each draw therefore, as the point moves, this creates a line.
+                <br />
+                The draw() method on the Point class draws the point.
+              </p>
               <br />
-              The Point class have an <span class="span-code">update()</span> method which updates the x and y co-ordinates of the point. 
-              The point is moved using the <span class="span-code">sin()</span> and <span class="span-code">cos()</span>. 
-              The background is not set at each draw therefore, as the point moves, this creates a line. 
-              <br/>
-              The draw() method on the Point class draws the point. 
-            </p>
-            <br />
-            <h4>Check boundaries</h4>
-            <p>
-              In the Point class, a method called <span class="span-code">checkBorder()</span> checks if a point hits the edge of the canvas. 
-              When it does, the point bounces off at a random angle. 
-              The <span class="span-code">randomAngle()</span> function checks which edge of the canvas it hit and based on that returns an angle. 
-            </p>
+              <h4>Check boundaries</h4>
+              <p>
+                In the Point class, a method called <span class="span-code">checkBorder()</span> checks if a point hits
+                the edge of the canvas.
+                When it does, the point bounces off at a random angle.
+                The <span class="span-code">randomAngle()</span> function checks which edge of the canvas it hit and
+                based on that returns an angle.
+              </p>
 
-            <h4><br />Keyboard interactivity</h4>
-            <p>
-              <span class="span-code">keyPressed()</span> is added for keyboard interactivity.
-              If user pressed 's' or 'S', the function <span class="span-code">saveCanvas()</span> saves the canvas as
-              an image.
-              The function <span class="span-code">gd.timestamp()</span> sets the name of the file as the date and time
-              of when the image is saved.
-              <br/>
-              If the user press the delete, the sketch restarts. 
-              <br/>
-              If user press the key 'a' or 'A', a new point is created. 
-            </p>
+              <h4><br />Keyboard interactivity</h4>
+              <p>
+                <span class="span-code">keyPressed()</span> is added for keyboard interactivity.
+                If user pressed 's' or 'S', the function <span class="span-code">saveCanvas()</span> saves the canvas as
+                an image.
+                The function <span class="span-code">gd.timestamp()</span> sets the name of the file as the date and
+                time
+                of when the image is saved.
+                <br />
+                If the user press the delete, the sketch restarts.
+                <br />
+                If user press the key 'a' or 'A', a new point is created.
+              </p>
+            </div>
           </div>
         </div>
-        </section>
-      </div>
+      </section>
     </div>
+  </div>
 </body>
+
 </html>
