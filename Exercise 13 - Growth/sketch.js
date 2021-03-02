@@ -16,7 +16,7 @@ let numPoints = 500;
 let col;
 
 function setup() {
-  createCanvas(800, 500);
+  createCanvas(1000, 500);
   background(255);
   // noLoop();
   initialPoint();
@@ -35,37 +35,25 @@ function initialPoint() {
 
 
 function draw() {
-  closest = width;
+  background(255);
 
   //create new point
   newPoint = generateRandomPoint();
+  newPoint.check();
+  points.forEach(point => {
+    point.render();
+  });
 
-  for (let i = 0; i < points.length; i++) {
-    //check distance between points
-    let newDist = dist(newPoint.position.x, newPoint.position.y, points[i].position.x, points[i].position.y);
-    // console.log(newDist);
 
-    //get the closest point
-    if (newDist < closest) {
-      closest = newDist;
-      closestPoint = i;
-    }
-  }
-
-  //move new point next to closest point
-  points[closestPoint].dock(newPoint);
-
-  //add new point to array
-  points.push(newPoint);
-
-  //reset
+  // reset
   if (points.length > numPoints) {
     clear();
     initialPoint();
   }
 
-  // frameRate(0.5);
+  // frameRate(10);
 }
+
 
 //create new point
 function generateRandomPoint() {

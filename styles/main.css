@@ -103,16 +103,18 @@ nav a:hover{
 }
 
 .code-block{
+  /* background-color: black; */
+  /* color: white; */
   background-color: #DCDCDC;
-  padding: 20px;
+  padding: 10px 20px;
 }
 
-.code{
+/* .code{
   font-family: "Courier";
   text-align: center;
   font-style: italic;
   font-size: 14px;
-}
+} */
 
 .span-code{
   font-family: "Courier";
