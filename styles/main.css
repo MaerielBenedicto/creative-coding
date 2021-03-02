@@ -4,14 +4,11 @@ body {
     height: 100%;
 }
 
-body {
-    background-color: #fff;
-    /* background-color: grey; */
-}
 
 body {
     font-family: 'Avenir', sans-serif;
     font-size: 1rem;
+    background-color: #f7f6f3;
 }
 
 a{
@@ -24,14 +21,12 @@ a:hover{
   cursor: pointer;
 }
 
-
-
 h4{
   font-size: 1.25rem;
 }
 
 nav a{
-  color: white;
+  color: white !important;
   text-decoration: none;
 }
 
@@ -47,7 +42,7 @@ nav a:hover{
 
 
 .custom-navbar{
-  background-color: #437C90;
+  background-color: #165c7d;
 }
 
 .title{
@@ -63,7 +58,7 @@ nav a:hover{
 }
 
 .sketch-title{
-  /* border-bottom: #437C90 solid 1px; */
+  border-bottom: #437C90 solid 3px;
 }
 
 
@@ -159,7 +154,7 @@ nav a:hover{
 
 .pd {
   margin-top: 10px;
-  background-color: white;
+  background-color: #f7f6f3;
   margin-bottom: 20px;
 }
 

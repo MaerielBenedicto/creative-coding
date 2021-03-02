@@ -1,105 +1,120 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <meta charset="UTF-8">
-    <title></title>
-    <script src="../libraries/p5/p5.min.js" type="text/javascript"></script>
 
-    <script src="../libraries/p5/p5.dom.min.js" type="text/javascript"></script>
-    <script src="../libraries/generative-design-library/generative-design-library.js" type="text/javascript"></script>
+<head>
+  <meta charset="UTF-8">
+  <title>MyPortfolio</title>
 
-    <script src="sketch.js" type="text/javascript"></script>
-    <!-- font-awesome -->
-    <script src="https://use.fontawesome.com/8d05b3eeca.js"></script>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
-    <link href="../styles/main.css" rel="stylesheet" type="text/css">
+  <!-- font-awesome -->
+  <script src="https://use.fontawesome.com/8d05b3eeca.js"></script>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+    integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+  <link href="../styles/main.css" rel="stylesheet" type="text/css">
 
-    <!-- help tooltip start -->
-    <script src="../libraries/jquery/jquery.js" type="text/javascript"></script>
-    <script type="text/javascript" src="../libraries/tooltipster/tooltipster.bundle.js"></script>
-    <link rel="stylesheet" type="text/css" href="../libraries/tooltipster/tooltipster.bundle.css" />
-    <link rel="stylesheet" type="text/css" href="../libraries/tooltipster/tooltipster-sideTip-noir.min.css" />
-    <script src="../libraries/help-tooltip.js" type="text/javascript"></script>
-    <!-- help tooltip end -->
-  </head>
-  <body class="container-fluid">
-    <!-- <div class="container"> -->
-      <div class="row">
-        <div class="col">
-          <div class="row title-div">
-            <div class="col-12">
-              <h1 class="title"> Color Interpolation</h1>
-            </div>
-            <div class="col-12 icons">
-              <i class="fa fa-play-circle-o fa-sm mr-1" id="showCanvas"></i><i class="fa fa-info-circle fa-sm" id="progress"></i>
-              <span class="home"><a href="../index.html" class="home">Home</a></span>
-            </div>
-          </div>
-          <div class="container">
-      <div class="row pd d-none" id="progress-div">
-        <div class="col-md-6">
+</head>
 
-          <h2>Description</h2>
-          <p>
-            Display colors between one color to another using   <span class="span-code">lerpColor</span> function.
-          </p>
-
-          <h3>Functions</h3>
-          <h4>color()</h4>
-          <p>
-            A set of rectangles across the canvas is drawn to demonstrate the color interpolation. </br>
-            A <span class="span-code">for()</span> loop is used to draw sets of squares (width is 20px and the height is the height of canvas) across the x axis.
-            The <span class="span-code">colorMode()</span> is set to HSB color system. The <span class="span-code">color()</span> function creates the color and stores it into a variable. The parameters of the functions are the HSB values. The colors to use for interpolation is stored in the startColor and endColor variables.
-          </p>
-          <br />
-          <h4>lerpColor()</h4>
-          <p>
-            The <span class="span-code">lerpColor</span> function is used to find the third color between two colors interpolated with each other. <br/>
-            The function accepts three parameters: a color which represents the starting color - startColor variable, a color which represents the ending color - endingColor variable and the amount of interpolation between 0 and 1.
-
-            <div class="code-block">
-              <span class="code">
-                for(let x = 0; x <= width; x++){ <br/>
-                &nbsp; let startColor = color(80, 100, 100); <br/>
-                &nbsp; let endColor = color(360, 100, 100);<br/>
-                &nbsp; let col = lerpColor(startColor, endColor, x / 10);<br/>
-                &nbsp; fill(col);<br/>
-                &nbsp; rect(x * 50, 0, 20, height);<br/>
-                }<br/>
-              </span>
-            </div>
-          </p>
-          <h4><br/>Keyboard interactivity</h4>
-          <p>
-          <span class="span-code">keyPressed()</span> is added for keyboard interactivity.
-            If user pressed 's' or 'S', the function <span class="span-code">saveCanvas()</span> saves the canvas as an image.
-            The function <span class="span-code">gd.timestamp()</span> sets the name of the file as the date and time of when the image is saved.
-          </p>
+<body class="container-fluid">
+  <!-- <div class="container"> -->
+  <div class="row">
+    <div class="col p-0">
+      <!-- NAVBAR -->
+      <nav class="navbar custom-navbar">
+        <div class="container">
+          <a class="navbar-brand" href="../index.html">My Portfolio.</a>
+          <a class="float-right">Github</a>
         </div>
-        <div class="col-md-6 col2">
-          <h4>Iteration 01</h4>
-          <div class="div-img">
-            <img class="img" src="images/image02.png" />
+      </nav>
+      <!-- END OF NAVBAR -->
+
+      <section>
+        <div class="container">
+
+          <!-- CANVAS -->
+          <div class="row justify-content-center p-5">
+            <iframe src="canvas.html" title="interactive color range" width="600" height="500" frameborder="0"
+              scrolling="no"></iframe>
           </div>
-          <h4>Iteration 02</h4>
-          <div class="div-img">
-            <img class="img" src="images/image01.png" />
+          <!-- END OF CANVAS -->
+
+          <!-- SKETCH TITLE -->
+          <div class="row mb-5 pt-5 sketch-title">
+            <div class="col-md-12 col-lg-6 mb-4 mb-lg-0 justify-content-center">
+              <h2>Lerp Color</h2>
+            </div>
           </div>
-        </div>
-      </div>
+          <!-- END OF SKETCH TITLE -->
+
+          <!-- DESCRIPTION -->
+          <div class="row pd">
+            <div class="col-md-5">
+
+              <h2>Description</h2>
+              <p>
+                Display colors between one color to another using <span class="span-code">lerpColor</span> function.
+              </p>
+
+              <h3>Functions</h3>
+              <h4>color()</h4>
+              <p>
+                A set of rectangles across the canvas is drawn to demonstrate the color interpolation. </br>
+                A <span class="span-code">for()</span> loop is used to draw sets of squares (width is 20px and the
+                height
+                is the height of canvas) across the x axis.
+                The <span class="span-code">colorMode()</span> is set to HSB color system. The <span
+                  class="span-code">color()</span> function creates the color and stores it into a variable. The
+                parameters of the functions are the HSB values. The colors to use for interpolation is stored in the
+                startColor and endColor variables.
+              </p>
+              <br />
+              <h4>lerpColor()</h4>
+              <p>
+                The <span class="span-code">lerpColor</span> function is used to find the third color between two colors
+                interpolated with each other. <br />
+                The function accepts three parameters: a color which represents the starting color - startColor
+                variable,
+                a color which represents the ending color - endingColor variable and the amount of interpolation between
+                0
+                and 1.
+
+              <div class="code-block">
+                <span class="code">
+                  for(let x = 0; x
+                  <= width; x++){ <br />
+                  &nbsp; let startColor = color(80, 100, 100); <br />
+                  &nbsp; let endColor = color(360, 100, 100);<br />
+                  &nbsp; let col = lerpColor(startColor, endColor, x / 10);<br />
+                  &nbsp; fill(col);<br />
+                  &nbsp; rect(x * 50, 0, 20, height);<br />
+                  }<br />
+                </span>
+              </div>
+              </p>
+              <h4><br />Keyboard interactivity</h4>
+              <p>
+                <span class="span-code">keyPressed()</span> is added for keyboard interactivity.
+                If user pressed 's' or 'S', the function <span class="span-code">saveCanvas()</span> saves the canvas as
+                an image.
+                The function <span class="span-code">gd.timestamp()</span> sets the name of the file as the date and
+                time
+                of when the image is saved.
+              </p>
+            </div>
+            <div class="col-md-6 col2">
+              <h4>Iteration 01</h4>
+              <div class="div-img">
+                <img class="img" src="images/image02.png" />
+              </div>
+              <h4>Iteration 02</h4>
+              <div class="div-img">
+                <img class="img" src="images/image01.png" />
+              </div>
+            </div>
+          </div>
+      </section>
+      <!-- END OF SECTION  -->
     </div>
   </div>
-</div>
-  </body>
-  <script src="../main.js" type="text/javascript"></script>
+  </div>
+</body>
 
-  <style>
-    canvas {
-      /* border: 2px solid black; */
-      display: block;
-      margin: 0 auto;
-      margin-bottom: 20px;
-    }
-
-  </style>
 </html>
