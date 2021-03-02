@@ -3,113 +3,121 @@
 
 <head>
   <meta charset="UTF-8">
-  <title></title>
-  <script src="../libraries/p5/p5.min.js" type="text/javascript"></script>
-  <script src="../libraries/p5/p5.dom.min.js" type="text/javascript"></script>
-  <script src="../libraries/generative-design-library/generative-design-library.js" type="text/javascript"></script>
-
-  <script src="sketch.js" type="text/javascript"></script>
-  <script src="Point.js" type="text/javascript"></script>
-
+  <title>MyPortfolio</title>
   <!-- font-awesome -->
   <script src="https://use.fontawesome.com/8d05b3eeca.js"></script>
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+    integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
   <link href="../styles/main.css" rel="stylesheet" type="text/css">
-
-  <!-- help tooltip start -->
-  <script src="../libraries/jquery/jquery.js" type="text/javascript"></script>
-  <script type="text/javascript" src="../libraries/tooltipster/tooltipster.bundle.js"></script>
-  <link rel="stylesheet" type="text/css" href="../libraries/tooltipster/tooltipster.bundle.css" />
-  <link rel="stylesheet" type="text/css" href="../libraries/tooltipster/tooltipster-sideTip-noir.min.css" />
-  <script src="../libraries/help-tooltip.js" type="text/javascript"></script>
-  <!-- help tooltip end -->
 </head>
 
-  <body class="container-fluid">
+<body class="container-fluid">
   <div class="row">
-    <div class="col">
-      <div class="row title-div">
-        <div class="col-12">
-          <h1 class="title"> Random Walker </h1>
+    <div class="col p-0">
+      <!-- NAVBAR -->
+      <nav class="navbar custom-navbar">
+        <div class="container">
+          <a class="navbar-brand" href="../index.html">My Portfolio.</a>
+          <a class="float-right">Github</a>
         </div>
-        <div class="col-12 icons">
-          <i class="fa fa-play-circle-o fa-sm mr-1" id="showCanvas"></i><i class="fa fa-info-circle fa-sm"
-            id="progress"></i>
-          <span class="home"><a href="../index.html" class="home">Home</a></span>
-        </div>
-      </div>
-      <div class="container">
-        <div class="row pd d-none" id="progress-div">
-          <div class="col-md-6">
+      </nav>
+      <!-- END OF NAVBAR -->
 
-            <h2>Description</h2>
-            <p>
-              A circle at the center of the canvas with random other circles created at random points and is reposition to the circle closest to it. 
-            </p>
+      <section>
+        <div class="container">
 
-            <h4>Create the first point</h4>
-            <p>
-              A point object is created using the Point class. The point class has the x and y coordinates and diameter of the circle. 
-              The initial point in created in the <span class="span-code">initialPoint()</span>  function. 
-              The color of the stroke is set randomly, x and y position is set to the center of the canvas.  
-              The point object is pushed into the points array.  The <span class="span-code">render()</span>  method draws the circle. 
-            </p>
-            <h4>Create other points</h4>
-            <p>
-              The <span class="span-code">generateRandomPoints()</span> function is where new point is created. The x and y position and the diameter is set randomly. 
+          <!-- CANVAS -->
+          <div class="container-fluid justify-content-center pt-5">
+            <iframe src="canvas.html" title="interactive color range" width="800" height="500" frameborder="0"
+              scrolling="no"></iframe>
+          </div>
+          <!-- END OF CANVAS -->
+
+          <!-- SKETCH TITLE -->
+          <div class="row mb-5 pt-5 sketch-title">
+            <div class="col-md-12 col-lg-6 mb-4 mb-lg-0 justify-content-center">
+              <h2>Growth</h2>
+            </div>
+          </div>
+          <!-- END OF SKETCH TITLE -->
+
+          <!-- DESCRIPTION -->
+          <div class="row pd">
+            <div class="col-md-6">
+
+              <h2>Description</h2>
+              <p>
+                A circle at the center of the canvas with random other circles created at random points and is
+                reposition to the circle closest to it.
+              </p>
+
+              <h4>Create the first point</h4>
+              <p>
+                A point object is created using the Point class. The point class has the x and y coordinates and
+                diameter of the circle.
+                The initial point in created in the <span class="span-code">initialPoint()</span> function.
+                The color of the stroke is set randomly, x and y position is set to the center of the canvas.
+                The point object is pushed into the points array. The <span class="span-code">render()</span> method
+                draws the circle.
+              </p>
+              <h4>Create other points</h4>
+              <p>
+                The <span class="span-code">generateRandomPoints()</span> function is where new point is created. The x
+                and y position and the diameter is set randomly.
+                <br />
+              </p>
               <br />
-            </p>
-            <br />
-            <h4>Find the closest point</h4>
-            <p>
-              To find the closest point, the <span class="span-code">dist()</span> function is used. This calculates the distance between two points: the points in the array and the new point created.
-               If the point has the lowest distance, that is set as the closest.  Once the closest point is identified, the point is stored in the closestPoint variable. 
-               <br/>
-               The <span class="span-code">dock()</span> method of closest point is then called passing the new point as parameter. 
+              <h4>Find the closest point</h4>
+              <p>
+                To find the closest point, the <span class="span-code">dist()</span> function is used. This calculates
+                the distance between two points: the points in the array and the new point created.
+                If the point has the lowest distance, that is set as the closest. Once the closest point is identified,
+                the point is stored in the closestPoint variable.
+                <br />
+                The <span class="span-code">dock()</span> method of closest point is then called passing the new point
+                as parameter.
 
-            </p>
-            <h4>dock()</h4>
-            <p>
-              The <span class="span-code">dock()</span> method accepts the new point object. This is set as the current point. 
-              The distances between the current point and closest point is calculated using the <span class="span-code">p5.Vector.sub()</span>. 
-              This returns the resultant vector of the two points. To calculate the magnitude of the resultant vector, <span class="span-code">mag()</span> is used. 
-              To calculate the angle and direction <span class="span-code">atan2()</span> is used. The new x and y position is then updated by substracting the calculated distance from the current point position. 
-              The <span class="span-code">render()</span> method of the current point is then called with the new x and y position. 
+              </p>
+              <h4>dock()</h4>
+              <p>
+                The <span class="span-code">dock()</span> method accepts the new point object. This is set as the
+                current point.
+                The distances between the current point and closest point is calculated using the <span
+                  class="span-code">p5.Vector.sub()</span>.
+                This returns the resultant vector of the two points. To calculate the magnitude of the resultant vector,
+                <span class="span-code">mag()</span> is used.
+                To calculate the angle and direction <span class="span-code">atan2()</span> is used. The new x and y
+                position is then updated by substracting the calculated distance from the current point position.
+                The <span class="span-code">render()</span> method of the current point is then called with the new x
+                and y position.
 
-               <br/>
-               After docking the new point to its new position, the new point is then added to the points array. 
-            </p>
+                <br />
+                After docking the new point to its new position, the new point is then added to the points array.
+              </p>
 
-            <h4>Restart growth</h4>
-            <p>
-              If the points array reached the set max number of points, the canvas is cleared and the<span class="span-code">initialPoint()</span> function is called. 
-            </p>
+              <h4>Restart growth</h4>
+              <p>
+                If the points array reached the set max number of points, the canvas is cleared and the<span
+                  class="span-code">initialPoint()</span> function is called.
+              </p>
 
-            <h4><br />Keyboard interactivity</h4>
-            <p>
-              <span class="span-code">keyPressed()</span> is added for keyboard interactivity.
-              If user pressed 's' or 'S', the function <span class="span-code">saveCanvas()</span> saves the canvas as
-              an image.
-              The function <span class="span-code">gd.timestamp()</span> sets the name of the file as the date and time
-              of when the image is saved.
-              <br/>
-              If the user press the delete, the sketch restarts. 
-              <br/>
-            </p>
+              <h4><br />Keyboard interactivity</h4>
+              <p>
+                <span class="span-code">keyPressed()</span> is added for keyboard interactivity.
+                If user pressed 's' or 'S', the function <span class="span-code">saveCanvas()</span> saves the canvas as
+                an image.
+                The function <span class="span-code">gd.timestamp()</span> sets the name of the file as the date and
+                time
+                of when the image is saved.
+                <br />
+                If the user press the delete, the sketch restarts.
+                <br />
+              </p>
 
+            </div>
           </div>
         </div>
-      </div>
+      </section>
     </div>
 </body>
-<script src="../main.js" type="text/javascript"></script>
-<style>
-  canvas {
-    /* border: 2px solid black; */
-    display: block;
-    margin: 0 auto;
-    margin-bottom: 20px;
-  }
-</style>
-
 </html>
