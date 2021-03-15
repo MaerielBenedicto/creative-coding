@@ -11,7 +11,6 @@ class Agent{
     }
 
     move(){
-        // this.velocity.add(acceleration);
         this.position.add(this.velocity);
     }
 }
