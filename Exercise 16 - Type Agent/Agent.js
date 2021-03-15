@@ -2,7 +2,7 @@ class Agent{
     constructor(_x, _y){
         this.position = createVector(_x, _y);
         this.velocity = createVector(random(-2, 2), random(-2, 2));
-        this.size = 25;
+        this.size = 10;
     }
 
     display(){ 
