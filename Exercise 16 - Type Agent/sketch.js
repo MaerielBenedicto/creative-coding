@@ -52,15 +52,35 @@ function setup() {
 function draw() {
     background(220);
 
-    agent.position.x = lerp(agent.position.x, target.position.x, 0.05);
-    agent.position.y = lerp(agent.position.y, target.position.y, 0.05);
+    // agent.position.x = lerp(agent.position.x, target.position.x, 0.05);
+    // agent.position.y = lerp(agent.position.y, target.position.y, 0.05);
 
     //display agent
     agents.forEach(agent => {
         agent.display();
     });
 
-    
+    agents[2].position.x = lerp(agents[2].position.x, arrayPos[0].x, 0.05);
+    agents[2].position.y = lerp(agents[2].position.y, arrayPos[0].y, 0.05);
+
+    agents[3].position.x = lerp(agents[3].position.x, arrayPos[1].x, 0.05);
+    agents[3].position.y = lerp(agents[3].position.y, arrayPos[1].y, 0.05);
+
+    agents[4].position.x = lerp(agents[4].position.x, arrayPos[2].x, 0.05);
+    agents[4].position.y = lerp(agents[4].position.y, arrayPos[2].y, 0.05);
+
+    agents[5].position.x = lerp(agents[5].position.x, arrayPos[3].x, 0.05);
+    agents[5].position.y = lerp(agents[5].position.y, arrayPos[3].y, 0.05);
+
+    agents[6].position.x = lerp(agents[6].position.x, arrayPos[4].x, 0.05);
+    agents[6].position.y = lerp(agents[6].position.y, arrayPos[4].y, 0.05);
+
+    agents[7].position.x = lerp(agents[7].position.x, arrayPos[5].x, 0.05);
+    agents[7].position.y = lerp(agents[7].position.y, arrayPos[5].y, 0.05);
+
+    agents[8].position.x = lerp(agents[8].position.x, arrayPos[6].x, 0.05);
+    agents[8].position.y = lerp(agents[8].position.y, arrayPos[6].y, 0.05);
+
 }
 
 function mousePressed() {
