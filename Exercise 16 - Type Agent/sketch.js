@@ -35,7 +35,6 @@ function setup() {
 
     //check image
     image(l_img, 0, 0);
-    console.log(l_img.width, l_img.height);
     l_img.loadPixels();
     for (let i = 0; i < l_img.width; i += 10) {
         for (let j = 0; j < l_img.height; j += 10) {
@@ -62,8 +61,7 @@ function draw() {
     });
 
     for(let i = 0; i < arrayPos.length; i++){
-        agents[i].position.x = lerp(agents[i].position.x, arrayPos[i].x, 0.05);
-        agents[i].position.y = lerp(agents[i].position.y, arrayPos[i].y, 0.05);
+        agents[i].move(arrayPos[i]);
     }
 
 }

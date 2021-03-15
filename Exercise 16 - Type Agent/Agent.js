@@ -10,7 +10,8 @@ class Agent{
         rect(this.position.x, this.position.y,  this.size,  this.size);
     }
 
-    move(){
-        this.position.add(this.velocity);
+    move(target){
+        this.position.x = lerp(this.position.x, target.x, 0.05);
+        this.position.y = lerp(this.position.y, target.y, 0.05);
     }
 }
