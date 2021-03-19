@@ -1,10 +1,10 @@
 class A {
-    constructor(_img, _index) {
+    constructor(_img, _index, _xpos, _ypos) {
         this.boxW = 7;
         this.box = 7;
         this.index = _index;
         // this.img = _img;
-        this.arrayIndexes = A.imagepixels(_img);
+        this.arrayIndexes = A.imagepixels(_img, _xpos, _ypos);
     }
 
     display() {
@@ -16,15 +16,15 @@ class A {
         }
     }
 
-    static imagepixels(img) {
+    static imagepixels(img,xpos, ypos) {
         // let letter = createGraphics(0, 0);
         // letter.image(img, 0, 0);
         let indexes = [];
-        image(img, 0, 0);
+        image(img, xpos, ypos);
         push();
-        translate(this.index * 50, 0);
-        for (let y = 0; y < img.height; y+=5) {
-            for (let x = 0; x < img.width; x+=5) {
+        // translate(this.index * 50, 0);
+        for (let y = ypos; y < ypos + img.height; y+=5) {
+            for (let x = xpos; x < xpos + img.width; x+=5) {
                 const [r, g, b] = get(x, y);
                 // console.log([r, g, b]);
                 // //if pixel color is black

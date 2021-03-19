@@ -13,8 +13,8 @@ class Agent{
         // this.position.x = lerp(this.position.x, target.x, 0.05);
         // this.position.y = lerp(this.position.y, target.y, 0.05);
         push();
-        translate(0 + (charIndex * 100), 0 + (charIndex * 100));
-        this.position = p5.Vector.lerp(this.position, target, 0.08);
+        // translate(0 + (charIndex * 100), 0 + (charIndex * 100));
+        this.position = p5.Vector.lerp(this.position, target, 0.9);
         pop();
     }
 
@@ -24,7 +24,7 @@ class Agent{
         //     scatterAgents.add(createVector(random(0,width), random(0,height)));
         // }
         // for(let j = 0; j < scatterAgents.length; j++){
-            this.position = p5.Vector.lerp(this.position, dock, 0.08);
+            this.position = p5.Vector.lerp(this.position, dock, 0.8);
         // }
         // this.position.x = lerp(this.position.x, 0, 0.05);
         // this.position.y = lerp(this.position.y, height-5, 0.05);

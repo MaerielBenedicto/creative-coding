@@ -21,10 +21,19 @@ let track = 0;
 let prevLet;
 let dock;
 let inputHistory = [];
+let agentsUsed = 0;
+let timer = 0;
+
+
+let drawXpos = 0;
+let drawYpos = 0;
+let count = 0;
+
+let Aletter, Lletter;
 function preload() {
     //load images: L
     Lchar = loadImage('images/L.png');
-    Achar = loadImage('images/A.png');
+    Achar = loadImage('images/A-copy2.png');
 }
 
 function setup() {
@@ -34,11 +43,9 @@ function setup() {
     guiControls();
 
 
-    for (let i = 0; i < totalAgents; i++) {
-        agents.push(new Agent(random(0, width), random(0, height)));
-    }
+    createAgents();
 
-    dock = createVector(0, 0)
+    dock = createVector(width/2, height/2);
 }
 
 function draw() {
@@ -46,59 +53,70 @@ function draw() {
 
     // for (let t = 0; t < chars.length; t++) {
     let index = chars.length - 1;
-    if (chars[index] == 'A') {
-        Aletter = new A(Achar, chars.length);
 
-        let prevLetterLength;
-        if (prevLet == undefined) {
-            prevLetterLength = 0;
-        } else {
-            prevLetterLength = prevLet.arrayIndexes.length;
-        }
 
-        // console.log("A");
-        for (let i = prevLetterLength; i < prevLetterLength + Aletter.arrayIndexes.length; i++) {
-            agents[i].move(Aletter.arrayIndexes[i - prevLetterLength], chars.length);
-        }
-        prevLet = Aletter;
-        inputHistory.push(Aletter);
-    }
 
-    if (chars[index] == 'L') {
-        Lletter = new A(Lchar, chars.length);
-
-        // console.log("L");
-        let prevLetterLength;
-        if (prevLet == undefined) {
-            prevLetterLength = 0;
-        } else {
-            prevLetterLength = prevLet.arrayIndexes.length;
-        }
-
-        for (let i = prevLetterLength; i < prevLetterLength + Lletter.arrayIndexes.length; i++) {
-            agents[i].move(Lletter.arrayIndexes[i - prevLetterLength], chars.length);
-        }
-        prevLet = Lletter;
-        inputHistory.push(Lletter);
-    }
-
-    if (chars.length == 0) {
-        console.log("no letters");
-        // for (let i = 0; i < agents.length; i++) {
-            let scatterAgents = [];
-            for (let i = 0; i < agents.length; i++) {
-                let newTarget = createVector(random(0, width), random(0, height));
-                agents[i].scatter(dock);
+    let prevLetterLength;
+    switch (chars[index]) {
+        case 'A':
+            for (let i = agentsUsed; i < agentsUsed + Aletter.arrayIndexes.length; i++) {
+                agents[i].move(Aletter.arrayIndexes[i - agentsUsed], chars.length);
             }
-    } 
+            break;
+
+
+        case 'L':
+            for (let i = agentsUsed; i < agentsUsed + Lletter.arrayIndexes.length; i++) {
+                agents[i].move(Lletter.arrayIndexes[i - agentsUsed], chars.length);
+            }
+            break;
+         default: 
+    }
+
 
    
+    // if (chars.length == 0) {
+    //     // console.log("no letters");
+    //     // for (let i = 0; i < agents.length; i++) {
+    //     let scatterAgents = [];
+    //     for (let i = 0; i < agents.length; i++) {
+    //         let newTarget = createVector(random(0, width), random(0, height));
+    //         agents[i].scatter(dock);
+    //     }
+    // }
+    
+    // for(let i = 0; i < inputHistory.length; i++){
+    //     console.log(inputHistory[i])
+    //     agentsUsed = agentsUsed + inputHistory[i];
+    // }
 
+    displayMarker(drawXpos, drawYpos);
     //display agent
     agents.forEach(agent => {
         agent.display();
     });
 
+}
+
+function createAgents() {
+    for (let i = 0; i < totalAgents; i++) {
+        agents.push(new Agent(random(0, width), random(0, height)));
+    }
+}
+
+function displayMarker(drawPosX, drawPosY) {
+    let fillCol;
+
+    if (frameCount % 80 > 40) {
+        fillCol = color(220);
+    }
+    else {
+        fillCol = color(0);
+    }
+
+    noStroke();
+    fill(fillCol);
+    rect(drawPosX, drawPosY, 5, 45);
 }
 
 
@@ -112,10 +130,10 @@ function guiControls() {
 
     var gui = new dat.GUI();
 
-    gui.add(controlVar, 'text').onChange(function () {
-        text = controlVar.text;
-        chars = text.split('');
-    });
+    // gui.add(controlVar, 'text').onChange(function () {
+    //     text = controlVar.text;
+    //     chars = text.split('');
+    // });
 }
 
 
@@ -127,4 +145,22 @@ function keyPressed() {
         saveCanvas(gd.timestamp(), 'png');
     }
 
+    if(key == 'A'){
+       chars.push(key);
+       Aletter = new A(Achar, chars.length, drawXpos, drawYpos);
+       prevLet = Aletter;
+       inputHistory.push(Aletter.arrayIndexes.length);
+       agentsUsed = agentsUsed + Aletter.arrayIndexes.length;
+       drawXpos = drawXpos + 50;
+    }
+    if(key == 'L'){
+        chars.push(key);
+        Lletter = new A(Lchar, chars.length, drawXpos, drawYpos);
+        prevLet = Lletter;
+        inputHistory.push(Lletter.arrayIndexes.length);
+        agentsUsed = agentsUsed + Lletter.arrayIndexes.length;
+        drawXpos = drawXpos + 50;
+    }
+
+    // drawXpos += 10;
 }
