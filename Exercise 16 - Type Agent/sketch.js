@@ -10,76 +10,121 @@ let target;
 let agent;
 let arrayPos = [];
 let c;
+let imgSizeW = 99;
+let imgSizeH = 96;
+let text = "";
+let stringText = [];
+let p;
+let totalAgents = 200;
+let chars = [];
+let track = 0;
+let prevLet;
+let dock;
+let inputHistory = [];
 function preload() {
-    //load image: L
-    l_img = loadImage('images/B.png');
+    //load images: L
+    Lchar = loadImage('images/L.png');
+    Achar = loadImage('images/A.png');
 }
 
 function setup() {
-    createCanvas(500, 500);
+    createCanvas(windowWidth, windowHeight);
     background(220);
     rectMode(CORNER);
+    guiControls();
 
-    //agent
-    agents.push(new Agent(0, 0));
 
-    //target
-    agents.push(new Agent(width / 2, height / 2));
-
-    for (let i = 0; i < 50; i++) {
-        agents.push(new Agent(random(0, width), random(height / 2, height)));
+    for (let i = 0; i < totalAgents; i++) {
+        agents.push(new Agent(random(0, width), random(0, height)));
     }
 
-    agent = agents[0];
-    target = agents[1];
-
-    //check image
-    image(l_img, 0, 0);
-    l_img.loadPixels();
-    for (let i = 0; i < l_img.width; i += 10) {
-        for (let j = 0; j < l_img.height; j += 10) {
-            const [r, g, b] = get(i, j);
-            // console.log([r,g,b]);
-            //if pixel color is black
-            if (r == 0 && b == 0 && g == 0) {
-                arrayPos.push(createVector(i, j));
-            }
-        }
-    }
-    l_img.updatePixels();
+    dock = createVector(0, 0)
 }
 
 function draw() {
     background(220);
 
-    // agent.position.x = lerp(agent.position.x, target.position.x, 0.05);
-    // agent.position.y = lerp(agent.position.y, target.position.y, 0.05);
+    // for (let t = 0; t < chars.length; t++) {
+    let index = chars.length - 1;
+    if (chars[index] == 'A') {
+        Aletter = new A(Achar, chars.length);
+
+        let prevLetterLength;
+        if (prevLet == undefined) {
+            prevLetterLength = 0;
+        } else {
+            prevLetterLength = prevLet.arrayIndexes.length;
+        }
+
+        // console.log("A");
+        for (let i = prevLetterLength; i < prevLetterLength + Aletter.arrayIndexes.length; i++) {
+            agents[i].move(Aletter.arrayIndexes[i - prevLetterLength], chars.length);
+        }
+        prevLet = Aletter;
+        inputHistory.push(Aletter);
+    }
+
+    if (chars[index] == 'L') {
+        Lletter = new A(Lchar, chars.length);
+
+        // console.log("L");
+        let prevLetterLength;
+        if (prevLet == undefined) {
+            prevLetterLength = 0;
+        } else {
+            prevLetterLength = prevLet.arrayIndexes.length;
+        }
+
+        for (let i = prevLetterLength; i < prevLetterLength + Lletter.arrayIndexes.length; i++) {
+            agents[i].move(Lletter.arrayIndexes[i - prevLetterLength], chars.length);
+        }
+        prevLet = Lletter;
+        inputHistory.push(Lletter);
+    }
+
+    if (chars.length == 0) {
+        console.log("no letters");
+        // for (let i = 0; i < agents.length; i++) {
+            let scatterAgents = [];
+            for (let i = 0; i < agents.length; i++) {
+                let newTarget = createVector(random(0, width), random(0, height));
+                agents[i].scatter(dock);
+            }
+    } 
+
+   
 
     //display agent
     agents.forEach(agent => {
         agent.display();
     });
 
-    for(let i = 0; i < arrayPos.length; i++){
-        agents[i].move(arrayPos[i]);
-    }
-
 }
 
-function mousePressed() {
-    // target.position.x = mouseX;
-    // target.position.y = mouseY;
 
-    console.log(mouseX, mouseY, get(mouseX, mouseY));
+
+function guiControls() {
+
+    //molecule variables
+    var controlVar = {
+        text: ""
+    };
+
+    var gui = new dat.GUI();
+
+    gui.add(controlVar, 'text').onChange(function () {
+        text = controlVar.text;
+        chars = text.split('');
+    });
 }
+
 
 //save canvas as an image function
 function keyPressed() {
     if (key == 's' || key == 'S') {
-      //saves canvas as an image - jpg or png
-      // saveCanvas('image','png');
-      saveCanvas(gd.timestamp(), 'png');
+        //saves canvas as an image - jpg or png
+        // saveCanvas('image','png');
+        saveCanvas(gd.timestamp(), 'png');
     }
+
 }
-
-
