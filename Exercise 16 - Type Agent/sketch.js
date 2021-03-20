@@ -25,15 +25,18 @@ let agentsUsed = 0;
 let timer = 0;
 
 
-let drawXpos = 0;
-let drawYpos = 0;
+let drawXpos = 20;
+let drawYpos = 20;
 let count = 0;
 
-let Aletter, Lletter;
+let Aletter, Lletter, Bletter;
 function preload() {
     //load images: L
     Lchar = loadImage('images/L.png');
     Achar = loadImage('images/A-copy2.png');
+    Bchar = loadImage('images/B.png');
+    Cchar = loadImage('images/C.png');
+    Dchar = loadImage('images/D.png');
 }
 
 function setup() {
@@ -45,7 +48,7 @@ function setup() {
 
     createAgents();
 
-    dock = createVector(width/2, height/2);
+    dock = createVector(width / 2, height / 2);
 }
 
 function draw() {
@@ -59,22 +62,44 @@ function draw() {
     let prevLetterLength;
     switch (chars[index]) {
         case 'A':
-            for (let i = agentsUsed; i < agentsUsed + Aletter.arrayIndexes.length; i++) {
+            let alength = Aletter.arrayIndexes.length;
+            for (let i = agentsUsed; i < agentsUsed + alength; i++) {
                 agents[i].move(Aletter.arrayIndexes[i - agentsUsed], chars.length);
             }
+           
             break;
+        case 'B':
+            let blength = Bletter.arrayIndexes.length;
 
-
+            for (let i = agentsUsed; i < agentsUsed + blength; i++) {
+                agents[i].move(Bletter.arrayIndexes[i - agentsUsed], chars.length);
+            }
+            break;
+        case 'C':
+            let clength = Cletter.arrayIndexes.length;
+            for (let i = agentsUsed; i < agentsUsed + clength; i++) {
+                agents[i].move(Cletter.arrayIndexes[i - agentsUsed], chars.length);
+            }
+            break;
+        case 'D':
+            let Dlength = Dletter.arrayIndexes.length;
+            for (let i = agentsUsed; i < agentsUsed + Dlength; i++) {
+                agents[i].move(Dletter.arrayIndexes[i - agentsUsed], chars.length);
+            }
+            break;
         case 'L':
-            for (let i = agentsUsed; i < agentsUsed + Lletter.arrayIndexes.length; i++) {
+            let llength = Lletter.arrayIndexes.length;
+            for (let i = agentsUsed; i < agentsUsed + llength; i++) {
                 agents[i].move(Lletter.arrayIndexes[i - agentsUsed], chars.length);
             }
             break;
-         default: 
     }
 
+    // console.log(prevLet);
 
+    //first letter
    
+    
     // if (chars.length == 0) {
     //     // console.log("no letters");
     //     // for (let i = 0; i < agents.length; i++) {
@@ -84,11 +109,7 @@ function draw() {
     //         agents[i].scatter(dock);
     //     }
     // }
-    
-    // for(let i = 0; i < inputHistory.length; i++){
-    //     console.log(inputHistory[i])
-    //     agentsUsed = agentsUsed + inputHistory[i];
-    // }
+
 
     displayMarker(drawXpos, drawYpos);
     //display agent
@@ -100,7 +121,7 @@ function draw() {
 
 function createAgents() {
     for (let i = 0; i < totalAgents; i++) {
-        agents.push(new Agent(random(0, width), random(0, height)));
+        agents.push(new Agent(random(0, width), random(height / 2, height)));
     }
 }
 
@@ -144,23 +165,86 @@ function keyPressed() {
         // saveCanvas('image','png');
         saveCanvas(gd.timestamp(), 'png');
     }
-
-    if(key == 'A'){
-       chars.push(key);
-       Aletter = new A(Achar, chars.length, drawXpos, drawYpos);
-       prevLet = Aletter;
-       inputHistory.push(Aletter.arrayIndexes.length);
-       agentsUsed = agentsUsed + Aletter.arrayIndexes.length;
-       drawXpos = drawXpos + 50;
+    if (keyCode == DELETE || keyCode == BACKSPACE) {
+        console.log(chars.length);
+        let ind = chars.length - 1;
+        console.log(chars[0]);
     }
-    if(key == 'L'){
+
+    if (key == 'A') {
+        if(prevLet == undefined){
+            prevLet = 0;
+        } else {
+            //get the amount of agents the previous letter used
+            prevLet = prevLet.arrayIndexes.length;
+        }
+
+        //add previous letter agents used to get total
+        agentsUsed = agentsUsed + prevLet;
         chars.push(key);
-        Lletter = new A(Lchar, chars.length, drawXpos, drawYpos);
+        //create A 
+        Aletter = new Letter(Achar, chars.length, drawXpos, drawYpos);
+        //set A as the previous letter
+        prevLet = Aletter;
+
+        inputHistory.push(Aletter.arrayIndexes.length);
+        
+        //move cursor
+        drawXpos = drawXpos + 50;
+    }
+    if (key == 'L') {
+        if(prevLet == undefined){
+            prevLet = 0;
+        } else {
+            prevLet = prevLet.arrayIndexes.length;
+        }
+        agentsUsed = agentsUsed + prevLet;
+        chars.push(key);
+        Lletter = new Letter(Lchar, chars.length, drawXpos, drawYpos);
+        
         prevLet = Lletter;
         inputHistory.push(Lletter.arrayIndexes.length);
-        agentsUsed = agentsUsed + Lletter.arrayIndexes.length;
+       
+        drawXpos = drawXpos + 50;
+    }
+    if (key == 'B') {
+        if(prevLet == undefined){
+            prevLet = 0;
+        } else {
+            prevLet = prevLet.arrayIndexes.length;
+        }
+        agentsUsed = agentsUsed + prevLet;
+        chars.push(key);
+        Bletter = new Letter(Bchar, chars.length, drawXpos, drawYpos);
+        prevLet = Bletter;
+        inputHistory.push(Bletter.arrayIndexes.length);
+        drawXpos = drawXpos + 50;
+    }
+    if (key == 'C') {
+        if(prevLet == undefined){
+            prevLet = 0;
+        } else {
+            prevLet = prevLet.arrayIndexes.length;
+        }
+        agentsUsed = agentsUsed + prevLet;
+        chars.push(key);
+        Cletter = new Letter(Cchar, chars.length, drawXpos, drawYpos);
+        prevLet = Cletter;
+        inputHistory.push(Cletter.arrayIndexes.length);
+        drawXpos = drawXpos + 50;
+    }
+    if (key == 'D') {
+        if(prevLet == undefined){
+            prevLet = 0;
+        } else {
+            prevLet = prevLet.arrayIndexes.length;
+        }
+        agentsUsed = agentsUsed + prevLet;
+        chars.push(key);
+        Dletter = new Letter(Dchar, chars.length, drawXpos, drawYpos);
+        prevLet = Dletter;
+        inputHistory.push(Dletter.arrayIndexes.length);
         drawXpos = drawXpos + 50;
     }
 
-    // drawXpos += 10;
 }

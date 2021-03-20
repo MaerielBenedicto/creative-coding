@@ -1,24 +1,21 @@
-class A {
+class Letter {
     constructor(_img, _index, _xpos, _ypos) {
         this.boxW = 7;
         this.box = 7;
         this.index = _index;
-        // this.img = _img;
-        this.arrayIndexes = A.imagepixels(_img, _xpos, _ypos);
+        this.arrayIndexes = Letter.imagepixels(_img, _xpos, _ypos);
     }
 
-    display() {
-        for (let y = 0; y < 200; y += 50) {
-            for (let x = 0; x < 200; x += 50) {
-                // noFill();
-                // rect(x, y, 50, 50);
-            }
-        }
-    }
+    // display() {
+    //     for (let y = 0; y < 200; y += 50) {
+    //         for (let x = 0; x < 200; x += 50) {
+    //             // noFill();
+    //             // rect(x, y, 50, 50);
+    //         }
+    //     }
+    // }
 
     static imagepixels(img,xpos, ypos) {
-        // let letter = createGraphics(0, 0);
-        // letter.image(img, 0, 0);
         let indexes = [];
         image(img, xpos, ypos);
         push();

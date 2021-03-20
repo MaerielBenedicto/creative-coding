@@ -14,7 +14,7 @@ class Agent{
         // this.position.y = lerp(this.position.y, target.y, 0.05);
         push();
         // translate(0 + (charIndex * 100), 0 + (charIndex * 100));
-        this.position = p5.Vector.lerp(this.position, target, 0.9);
+        this.position = p5.Vector.lerp(this.position, target, 0.5);
         pop();
     }
 
