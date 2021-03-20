@@ -29,6 +29,7 @@ let drawXpos = 20;
 let drawYpos = 20;
 let count = 0;
 let done = false;
+let targets = [];
 
 let Aletter, Lletter, Bletter;
 function preload() {
@@ -67,7 +68,7 @@ function preload() {
 }
 
 function setup() {
-    createCanvas(500, 500);
+    createCanvas(windowWidth, 500);
     background(220);
     rectMode(CORNER);
     // guiControls();
@@ -87,7 +88,7 @@ function draw() {
 
 
     let prevLetterLength;
-    switch (chars[index]) {
+    switch (key) {
         case 'A':
             updateAgents(Aletter);
             break;
@@ -166,8 +167,12 @@ function draw() {
         case 'Z':
             updateAgents(Zletter);
             break;
-        // case 
+    }
 
+    switch (keyCode) {
+        case 8:
+            updateDeletedChar();
+            break;
     }
 
 
@@ -180,16 +185,16 @@ function draw() {
     //         agents[i].scatter(dock);
     //     }
     // }
-    if(prevLet !== undefined){
+    if (prevLet !== undefined) {
         // let prev = prevLet.arrayIndexes.length;
-        if(agentsUsed + nextLet.arrayIndexes.length >= totalAgents){
+        if (agentsUsed + prevLet.arrayIndexes.length >= totalAgents) {
             agentsUsed = totalAgents - agentsUsed - prevLet.arrayIndexes.length;
-            console.log(agentsUsed);
+            console.log("DELETE");
             //BACK TO 0
             // agentsUsed = 0;
         }
     }
-    
+
 
     //cursor
     displayMarker(drawXpos, drawYpos);
@@ -210,9 +215,9 @@ function updateAgents(letter) {
 
 function createAgents() {
     // while (done == false) {
-        for (let i = 0; i < totalAgents; i++) {
-            agents.push(new Agent(random(0, width), random(height / 2, height)));
-        }
+    for (let i = 0; i < totalAgents; i++) {
+        agents.push(new Agent(random(0, width), random(height / 2, height)));
+    }
     // }
 }
 
@@ -223,7 +228,7 @@ function displayMarker(drawPosX, drawPosY) {
         fillCol = color(220);
     }
     else {
-        fillCol = color(255,0,0);
+        fillCol = color(255, 0, 0);
     }
 
     noStroke();
@@ -231,7 +236,17 @@ function displayMarker(drawPosX, drawPosY) {
     rect(drawPosX, drawPosY, 5, 45);
 }
 
-
+function updateDeletedChar() {
+    let letterLength = prevLet.arrayIndexes.length;
+    console.log(agentsUsed,letterLength);
+    // let targets = [];
+    // console.log(targets);
+    for (let i = agentsUsed; i < letterLength; i++) {
+        for (let x = 0; x < targets.length; x++) {
+            agents[i].move(targets[x]);
+        }
+    }
+}
 
 // function guiControls() {
 
@@ -255,13 +270,20 @@ function keyPressed() {
     // }
 
     if (keyCode == DELETE || keyCode == BACKSPACE) {
-        console.log(prevLet);
-        let ind = chars.length - 1;
-        console.log(chars[ind]);
-
-        agentsUsed = agentsUsed - prevLet.arrayIndexes.length;
-        console.log(agentsUsed);
-
+        // console.log(agentsUsed, prevLet);
+        // let ind = chars.length - 1;
+        // console.log(chars[ind]);
+        // console.log('d',agentsUsed);
+        // agentsUsed = agentsUsed - prevLet.arrayIndexes.length;
+        // console.log('b',agentsUsed);
+        
+        for(let i = 0; i < prevLet.arrayIndexes.length; i++){
+             targets.push(createVector(random(0,width), random(0, height)));
+        }
+        // updateDeletedChar();
+        //remove last letter
+        chars.pop();
+        drawXpos = drawXpos - 50;
     }
 
     if (key == 'A') {
@@ -373,9 +395,14 @@ function keyPressed() {
 
 
     //SPACE
-    if(keyCode === 32){
+    if (keyCode === 32) {
         console.log("space");
         drawXpos = drawXpos + 50;
+    }
+    if (keyCode === 13) {
+        console.log("space");
+        drawXpos = 20;
+        drawYpos = drawYpos + 50;
     }
 
 }

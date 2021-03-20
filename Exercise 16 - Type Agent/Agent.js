@@ -11,12 +11,9 @@ class Agent{
 
     move(target){    
         this.position = p5.Vector.lerp(this.position, target, 0.5);
-        if(this.position == target){
-            done = true;
-        }
     }
 
     scatter(target){
-        this.position = p5.Vector.lerp(this.position, dock, 0.8);
+        this.position = p5.Vector.lerp(this.position, target, 0.5);
     }
 }

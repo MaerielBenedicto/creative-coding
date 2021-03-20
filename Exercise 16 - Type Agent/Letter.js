@@ -16,7 +16,7 @@ class Letter {
                 }
             }
         }
-        // background(220);
+        background(220);
         pop();
         return indexes;
     }
