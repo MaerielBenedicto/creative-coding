@@ -9,24 +9,14 @@ class Agent{
         rect(this.position.x, this.position.y,  this.size,  this.size);
     }
 
-    move(target, charIndex){
-        // this.position.x = lerp(this.position.x, target.x, 0.05);
-        // this.position.y = lerp(this.position.y, target.y, 0.05);
-        push();
-        // translate(0 + (charIndex * 100), 0 + (charIndex * 100));
+    move(target){    
         this.position = p5.Vector.lerp(this.position, target, 0.5);
-        pop();
+        if(this.position == target){
+            done = true;
+        }
     }
 
     scatter(target){
-        // let scatterAgents = [];
-        // for(let i = 0; i < agents.length; i++){
-        //     scatterAgents.add(createVector(random(0,width), random(0,height)));
-        // }
-        // for(let j = 0; j < scatterAgents.length; j++){
-            this.position = p5.Vector.lerp(this.position, dock, 0.8);
-        // }
-        // this.position.x = lerp(this.position.x, 0, 0.05);
-        // this.position.y = lerp(this.position.y, height-5, 0.05);
+        this.position = p5.Vector.lerp(this.position, dock, 0.8);
     }
 }
