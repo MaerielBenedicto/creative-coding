@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <title>MyPortfolio</title>
+  <!-- font-awesome -->
+  <script src="https://use.fontawesome.com/8d05b3eeca.js"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.6.0/styles/default.min.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.6.0/highlight.min.js"></script>
+<!-- and it's easy to individually load additional languages -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.6.0/languages/go.min.js"></script>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+    integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    
+  <link href="../styles/main.css" rel="stylesheet" type="text/css">
+</head>
+
+<body class="container-fluid">
+  <div class="row">
+    <div class="col p-0">
+      <!-- NAVBAR -->
+      <nav class="navbar custom-navbar">
+        <div class="container">
+          <a class="navbar-brand" href="../index.html">My Portfolio.</a>
+          <a href="https://github.com/MaerielBenedicto/creative-coding" target="_blank" class="float-right">Github</a>
+        </div>
+      </nav>
+      <!-- END OF NAVBAR -->
+
+      <section>
+        <div class="container">
+
+          <!-- CANVAS -->
+          <div class="row justify-content-center pt-5">
+            <iframe src="canvas.html" width="1000" height="500" frameborder="0" scrolling="no"></iframe>
+          </div>
+          <!-- END OF CANVAS -->
+
+          <!-- SKETCH TITLE -->
+          <div class="row mb-5 pt-5 sketch-title">
+            <div class="col-md-12 col-lg-6 mb-4 mb-lg-0 justify-content-center">
+              <h2>Type</h2>
+            </div>
+          </div>
+          <!-- END OF SKETCH TITLE -->
+
+          <!-- DESCRIPTION -->
+          <div class="row pd">
+            <div class="col-md-6">
+
+              <h2>Description</h2>
+              <p>
+                Using opentype.js to display a typography. 
+              </p>
+
+              <h4>Load font</h4>
+              <p>
+                The font is loaded using the opentype.load() method. The font is stored in the data folder. When the font failed to load, an error is logged into the console.
+                If successfully loaded, the loop() is turned on and the font is stored in the font variable. 
+              </p>
+
+              <h4>getPath()</h4>
+              <p>
+                In the <span class="span-code">getPath()</span> function, the string, x and y position where the string should begin and its font size are passed as arguments.
+                Opentype.js have a method called <span class="span-code">getPath()</span> which returns the path.commands array. 
+                This path.commands array are the x and y of each points that forms the typography.
+                <div class="code-block">
+                  <pre><code class="language-js">
+function getPath(message, xPos, yPos, fontSize){
+  // params: X, Y and Font size
+  fontPath = font.getPath(message, xPos, yPos, fontSize);
+  // path = new g.Path(fontPath.commands);
+  // path = g.resampleByAmount(path, 600);
+  // path = g.resampleByLength(path, 1);
+  pathArray = fontPath.commands;
+  return pathArray;
+}</code></pre>
+                    <br />
+                  </span>
+                </div>
+              </p>
+              <h4>fintMatch()</h4>
+              <p>
+                 The findMatch() function accepts the string as an argument. In the findMath() function, the spaces from the string are removed. 
+                 There is an empty array called match, and shapeIndex initialised to 1. 
+                 A loop through the string is performed, and if the character matches one of the characters that will have double shapes ie 'o',
+                 it takes the position of the character in the string and add 1 to it and is pushed into the match array.
+                 One is added so that the shape after the index that matched the character will be the inside shape. 
+                 The match array will track which 'M''Z' in the pathArray.
+                 Another if statement which checks if the character is 'B', because with B, that means the next two shapes after it will be the inner shapes.
+                 The findMatch function then returns the match array. 
+                <br />
+                <div class="code-block">                    
+                    <pre><code class="language-js">function findMatch(message) {
+//remove space from string
+msgNoSpace = message.replace(/\s/g, '');
+                      
+match = [];
+let shapeIndex = 1;
+for (let i = 0; i < msgNoSpace.length; i++) {
+    if (msgNoSpace[i].match(/[abedgijopqADOPQR690]/g)) {
+      match.push(i + shapeIndex);
+      shapeIndex++;
+    }
+
+    if (msgNoSpace[i].match(/[B8]/g)) {
+      match.push(i + shapeIndex);
+      shapeIndex++;
+      match.push(i + shapeIndex);
+      shapeIndex++;
+    }
+  }
+  return match;
+}</code></pre>
+                    <br />
+                </div>
+              </p>
+              <br />
+              <h4>drawType()</h4>
+              <p>
+                In the drawType function, a loop through the path array commands. An if statement checks if its type is M and Z.
+                if its M, the index is stored as the startVertex and if its Z, it is the endVertex.
+                Then beginShape() is called which starts drawing the vertex. A loops through from the startVertex to the endVertex. 
+                Inside the for loop is another for loop which checks if the current position from the pathArray matches the positions in the match array.
+                So evertime it detects the beginning of the shape, the variable charPos is incremented. 
+                If they match, the color is set and it exits out of the loop.
+                
+                If the shape has ended (type is Z), then it exits out of loop again. Then endShape() is called. 
+              </p>
+              <div class="code-block">                    
+              <pre><code class="language-js">function drawType(pathArray, match, shapeColour, innerColour){
+  let charPos = -1;
+  //using vertex
+  for (let i = 0; i < pathArray.length; i++) {
+    //get the index start and end of shape
+    if (pathArray[i].type == "M") {
+      startVertex = i;
+      charPos++;
+    }
+    if (pathArray[i].type == "Z") {
+      endVertex = i;
+    }
+
+    let col = shapeColour;
+
+    beginShape();
+    for (let z = startVertex; z < endVertex; z++) {
+      //check if character position matches
+      for (let h = 0; h < match.length; h++) {
+        if (charPos == match[h]) {
+          col = innerColour;
+          break;
+        }
+      }
+      fill(col);
+      strokeWeight(2);
+      stroke('#e48d2f');
+      //if end of shape, exit loop   
+      if (pathArray[z].type == "Z") {
+        break;
+      }
+      vertex(pathArray[z].x, pathArray[z].y);
+    }
+    endShape(CLOSE);
+  }
+}
+
+              </code></pre>
+              </div>
+              
+
+              
+              <h4><br />Keyboard interactivity</h4>
+              <p>
+                <span class="span-code">keyPressed()</span> is added for keyboard interactivity.
+                If user pressed 's' or 'S', the function <span class="span-code">saveCanvas()</span> saves the canvas as
+                an image.
+                The function <span class="span-code">gd.timestamp()</span> sets the name of the file as the date and
+                time
+                of when the image is saved.
+                <br />
+              </p>
+            </div>
+
+
+            <div class="col-md-6 col2">
+              <br />
+              <h4>Output 1</h4>
+              <div class="div-img">
+                <img class="img" src="images/type.png" />
+              </div>
+              <div class="div-img">
+                <img class="img" src="images/02.png" />
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+  </div>
+</body>
+<style>
+  canvas {
+    border: 2px solid black;
+    display: block;
+    margin: 0 auto;
+  }
+</style>
+
+</html>

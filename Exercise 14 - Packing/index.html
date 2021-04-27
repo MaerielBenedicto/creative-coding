@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <title>MyPortfolio</title>
+  <!-- font-awesome -->
+  <script src="https://use.fontawesome.com/8d05b3eeca.js"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.6.0/styles/default.min.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.6.0/highlight.min.js"></script>
+<!-- and it's easy to individually load additional languages -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.6.0/languages/go.min.js"></script>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+    integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    
+  <link href="../styles/main.css" rel="stylesheet" type="text/css">
+</head>
+
+<body class="container-fluid">
+  <div class="row">
+    <div class="col p-0">
+      <!-- NAVBAR -->
+      <nav class="navbar custom-navbar">
+        <div class="container">
+          <a class="navbar-brand" href="../index.html">My Portfolio.</a>
+          <a href="https://github.com/MaerielBenedicto/creative-coding" target="_blank" class="float-right">Github</a>
+        </div>
+      </nav>
+      <!-- END OF NAVBAR -->
+
+      <section>
+        <div class="container">
+
+          <!-- CANVAS -->
+          <div class="row justify-content-center pt-5">
+            <iframe src="canvas.html" width="1000" height="500" frameborder="0" scrolling="no"></iframe>
+          </div>
+
+          <!-- END OF CANVAS -->
+
+          <!-- SKETCH TITLE -->
+          <div class="row mb-5 pt-5 sketch-title">
+            <div class="col-md-12 col-lg-6 mb-4 mb-lg-0 justify-content-center">
+              <h2>Growth</h2>
+            </div>
+          </div>
+          <!-- END OF SKETCH TITLE -->
+
+          <!-- DESCRIPTION -->
+          <div class="row pd">
+            <div class="col-md-6">
+
+              <h2>Description</h2>
+              <p>
+                A circle at the center of the canvas with random other circles created at random points and is
+                reposition to the circle closest to it.
+              </p>
+
+              <h4>Create the first point</h4>
+              <p>
+                A point object is created using the Point class. The point class has the x and y coordinates and
+                diameter of the circle.
+                The initial point in created in the <span class="span-code">initialPoint()</span> function.
+                The color of the stroke is set randomly, x and y position is set to the center of the canvas.
+                The point object is pushed into the points array. The <span class="span-code">render()</span> method
+                draws the circle.
+              </p>
+              <h4>Create other points</h4>
+              <p>
+                The <span class="span-code">generateRandomPoints()</span> function is where new point is created. The x
+                and y position and the diameter is set randomly.
+                <br />
+              </p>
+              <br />
+              <h4>Find the closest point</h4>
+              <p>
+                To find the closest point, the <span class="span-code">dist()</span> function is used. This calculates
+                the distance between two points: the points in the array and the new point created.
+                If the point has the lowest distance, that is set as the closest. Once the closest point is identified,
+                the point is stored in the closestPoint variable.
+                <br />
+                The <span class="span-code">dock()</span> method of closest point is then called passing the new point
+                as parameter.
+
+              </p>
+              <h4>dock()</h4>
+              <p>
+                The <span class="span-code">dock()</span> method accepts the new point object. This is set as the
+                current point.
+                The distances between the current point and closest point is calculated using the <span
+                  class="span-code">p5.Vector.sub()</span>.
+                This returns the resultant vector of the two points. To calculate the magnitude of the resultant vector,
+                <span class="span-code">mag()</span> is used.
+                To calculate the angle and direction <span class="span-code">atan2()</span> is used. The new x and y
+                position is then updated by substracting the calculated distance from the current point position.
+                The <span class="span-code">render()</span> method of the current point is then called with the new x
+                and y position.
+
+                <br />
+                After docking the new point to its new position, the new point is then added to the points array.
+              </p>
+
+              <h4>Restart growth</h4>
+              <p>
+                If the points array reached the set max number of points, the canvas is cleared and the<span
+                  class="span-code">initialPoint()</span> function is called.
+              </p>
+
+              <h4><br />Keyboard interactivity</h4>
+              <p>
+                <span class="span-code">keyPressed()</span> is added for keyboard interactivity.
+                If user pressed 's' or 'S', the function <span class="span-code">saveCanvas()</span> saves the canvas as
+                an image.
+                The function <span class="span-code">gd.timestamp()</span> sets the name of the file as the date and
+                time
+                of when the image is saved.
+                <br />
+                If the user press the delete, the sketch restarts.
+                <br />
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+  </div>
+</body>
+<style>
+  canvas {
+    border: 2px solid black;
+    display: block;
+    margin: 0 auto;
+  }
+</style>
+
+</html>
