@@ -17,11 +17,16 @@ class Agent {
         this.position = p5.Vector.lerp(this.position, this.target, lerpSpeed);
     }
 
-    clone(){
-        let agent = new Agent(this.position.x, this.position.y);
+    clone() {
+        let agent = new Agent(this.position.x, this.position.y, agentSize);
 
-        agent = this.position.x;
-        agent = this.position.y;
+        if (scattered) {
+            agent.position.x = random(0,width);
+            agent.position.y = random(0, height);
+        } else {
+            agent.position.x = this.position.x;
+            agent.position.y = this.position.y;
+        }
 
         return agent;
     }

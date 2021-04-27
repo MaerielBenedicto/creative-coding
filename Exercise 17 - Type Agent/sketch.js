@@ -37,7 +37,7 @@ let indexes = [];
 let indexPositions = [];
 
 let agents = [];
-let totalAgents = 600;
+let totalAgents = 200;
 let agentsUsed = 0;
 
 let arrayIndexes = [];
@@ -80,7 +80,7 @@ function setup() {
     background('#e6e4e0');
     // selectedFont = dubai;
     startingPosX = width - boxWidth01 - 50;
-    startingPosY = 223;
+    startingPosY = 450;
 
     guiControls();
     createAgents();
@@ -92,7 +92,6 @@ function setup() {
 function setupText(text) {
     letters = [];
     message = text;
-    console.log("this", startSimulation)
     if (font == "dubai") {
         selectedFont = dubai;
     } else if (font == "zen") {
@@ -135,7 +134,6 @@ function setupText(text) {
                 index++;
             }
         }
-
     }
 }
 
@@ -161,7 +159,7 @@ function draw() {
     if (startSimulation == true) {
         for (let i = 0; i < arrayIndexes.length; i++) {
             update(arrayIndexes[i], i);
-            input(i);
+            input(i, inputs);
         }
     }
 
@@ -169,6 +167,14 @@ function draw() {
     agents.forEach((agent, i) => {
         agent.display();
     });
+
+
+    push()
+    fill(0)
+    textFont(selectedFont);
+    textSize(16);
+    text("Agents used:  " + numUsed, startingPosX, startingPosY + boxHeight01 + 20);
+    pop();
 }
 
 //move agents
@@ -177,24 +183,20 @@ function update(letter, i) {
         for (let j = letter.start; j < letter.end; j++) {
             agents[j].move();
         }
-    }, 1000 * i)
+    }, 500 * i);
 }
 
 //display input history 
 function input(i) {
     setTimeout(() => {
+        let index = 0;
         for (let j = 0; j < inputHistories[i].length; j++) {
             inputHistories[i][j].move();
             inputHistories[i][j].display();
         }
+
         numUsed = inputHistories[i].length;
-        push()
-        fill(0)
-        textFont(selectedFont);
-        textSize(16);
-        text("Agents used:  " + numUsed, startingPosX, startingPosY + boxHeight01 + 20);
-        pop();
-    }, 1000 * i)
+    }, 500 * i)
 }
 
 function getLetter() {
@@ -218,40 +220,13 @@ function getLetter() {
             start = start + letters[m].arrVectors.length;
         }
 
-        if ((arrPos.start + arrPos.arr) > totalAgents) {
-            console.log(arrPos.start + arrPos.arr)
-            arrPos.end = totalAgents;
-            arrPos.arr = abs(arrPos.end - arrPos.start);
-            start = 0;
-            end = abs(totalAgents - end);
-
-            let next = [];
-            for (let i = 0; i < letters[m].length; i++) {
-                next.push(letters[m][i]);
-            }
-
-            left = {
-                start: 0,
-                end: end,
-                arr: end - start,
-                position: next
-            }
-
-            start = left.end;
-            end = letters[m].arrVectors.length;
-        }
-
         arrayIndexes.push(arrPos);
-        if (left != undefined) {
-            arrayIndexes.push(left);
-            left = undefined;
-        }
     }
 
     let totalPoints = 0;
     let index = 0;
     totalPoints = countTotal();
-    //if more agents than target
+    // if more agents than target
     if (totalPoints < agents.length) {
         let removeAgents = agents.length - totalPoints;
         agents.splice(removeAgents - 1, removeAgents);
@@ -265,14 +240,24 @@ function getLetter() {
                 index++;
             }
         }
-    } 
-    // else if(totalPoints > agents.length){
-    //     for (let i = agents.length; i < totalPoints; i++) {
-    //         let newAgent = agents[i - agents.length].clone();
+    }
 
-    //         agents.push(newAgent);
-    //     }
-    // }
+    //if(less than target)
+    else if (totalPoints > agents.length) {
+        for (let i = agents.length; i < totalPoints; i++) {
+            let newAgent = agents[i - agents.length].clone();
+            agents.push(newAgent);
+        }
+        for (let i = 0; i < arrayIndexes.length; i++) {
+            let letter = arrayIndexes[i];
+            let index = 0;
+            for (let j = letter.start; j < letter.end; j++) {
+                agents[j].target.x = letters[i].arrVectors[index].x;
+                agents[j].target.y = letters[i].arrVectors[index].y;
+                index++;
+            }
+        }
+    }
 }
 
 function createAgents() {
@@ -326,6 +311,12 @@ function guiControls() {
     //     setupText(controlVar.message);
     //     createAgents();
     // });
+
+    gui.add(controlVar, 'circle').onChange(function () {
+        circle = controlVar.circle;
+        setupText(controlVar.message);
+        createAgents();
+    });
 
     //change agents initial position
     gui.add(controlVar, 'scattered').onChange(function () {
@@ -385,22 +376,8 @@ function guiControls() {
         setupText(controlVar.message);
         createAgents();
     });
-
-
-
-
-
 }
 
-function reset() {
-    startSimulation = false;
-    lerpSpeed = 0;
-    agents = [];
-
-    setupText(message);
-    createAgents();
-    getLetter();
-}
 
 function displayGrid() {
     for (let x = 0; x < width; x += width / 13) {

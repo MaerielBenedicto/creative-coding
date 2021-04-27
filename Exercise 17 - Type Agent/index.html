@@ -37,7 +37,8 @@
           <div class="row mb-5 pt-5 sketch-title">
             <div class="col-md-12 col-lg-12 mb-4 mb-lg-0 justify-content-center">
               <h2>Random Angle</h2>
-              <a href="https://github.com/MaerielBenedicto/creative-coding/tree/master/Exercise%2017%20-%20Type%20Agent" target="_blank" class="float-right">Github</a>
+              <a href="https://github.com/MaerielBenedicto/creative-coding/tree/master/Exercise%2017%20-%20Type%20Agent"
+                target="_blank" class="float-right">Github</a>
 
             </div>
           </div>
@@ -46,57 +47,122 @@
           <!-- DESCRIPTION -->
           <div class="row pd">
             <div class="col-md-6">
-
               <h2>Description</h2>
               <p>
-                A point bouncing off the edges at random angles.
+                This simulation is an interactive generative time based program that explores agency.
+                The idea is to build an autonomous systems by generating letters from autonomous agents.
               </p>
+              <h4>Functions</h4>
+              <h4>Load font</h4>
+              Fonts are loaded in the sketch using the <span class="span-code">loadFont()</span> method in the <span
+                class="span-code">preload()</span> function.
+              <pre><code class="language-js">
+  function preload() {
+    dubai = loadFont('data/DubaiSummer.otf');
+    zen = loadFont('data/ZenDots-Regular.ttf');
+    squareFont = loadFont('data/SquareOne-K10o.ttf');
+}</code></pre>
+              <h4>Create Agents</h4>
+              <p>An Agents class form each agent. An agent class have its position, size, and a target.
+                If the agents needed to form the string is more than the created agents, agents are cloned.
+                If the scattered option is true, the position of each agents are random, and if false, the new agents
+                position is copied from the last agent.
+                If the agents needed are less than the created agents, the remaining agents are removed from the array.
+              </p>
+              <pre><code class="language-js">
+  let removeAgents = agents.length - totalPoints;
+  agents.splice(removeAgents - 1, removeAgents);
+  ...
+  let newAgent = agents[i - agents.length].clone();
+  ...
+  let agent = new Agent(this.position.x, this.position.y, agentSize);
 
-              <h4>Create point</h4>
-              <p>
-                A Point class is created, which creates a point object.
-                Using the <span class="span-code">createVector()</span> function, the x and y co-ordinates of the point
-                is created.
-                It also has the properties: angle, s (strokeWeight) and color.
+  clone(){
+    if (scattered) {
+        agent.position.x = random(0,width);
+        agent.position.y = random(0, height);
+    } else {
+        agent.position.x = this.position.x;
+        agent.position.y = this.position.y;
+    }
+    return agent;
+  }
+</code></pre>
+              <h4>Graphics</h4>
+              <p>A Graphic class creates a graphic object which is used for the text to draw into. The image is analysed
+                and the positions of where the black value of the image is checked.
+                This is stored in an array. This array is what will form the letter. Each agents are assigned a target
+                positions from this array.
+              </p>
+              <pre><code class="language-js">
+  let img = createGraphics(fontsize + 20, fontSize + 20);
 
-              </p>
-              <h4>createPoint() function </h4>
-              <p>
-                createPoint function creates a new point object and pushes it into the points array.
-                This function takes in xpos, ypos and _a (angle) arguments. In the <span class="span-code">set
-                  up()</span> function, the first point is placed on (0,0) origin with a 45 degrees angle.
-                <br />
-                The Point class have an <span class="span-code">update()</span> method which updates the x and y
-                co-ordinates of the point.
-                The point is moved using the <span class="span-code">sin()</span> and <span
-                  class="span-code">cos()</span>.
-                The background is not set at each draw therefore, as the point moves, this creates a line.
-                <br />
-                The draw() method on the Point class draws the point.
-              </p>
-              <br />
-              <h4>Check boundaries</h4>
-              <p>
-                In the Point class, a method called <span class="span-code">checkBorder()</span> checks if a point hits
-                the edge of the canvas.
-                When it does, the point bounces off at a random angle.
-                The <span class="span-code">randomAngle()</span> function checks which edge of the canvas it hit and
-                based on that returns an angle.
-              </p>
+  img.pixelDensity(1);
+  img.background(255);
+  img.textFont(selectedFont);
+  img.textSize(fontSize);
+  img.text(message[i], 0, fontSize);
+  img.loadPixels();
 
-              <h4><br />Keyboard interactivity</h4>
-              <p>
-                <span class="span-code">keyPressed()</span> is added for keyboard interactivity.
-                If user pressed 's' or 'S', the function <span class="span-code">saveCanvas()</span> saves the canvas as
-                an image.
-                The function <span class="span-code">gd.timestamp()</span> sets the name of the file as the date and
-                time
-                of when the image is saved.
-                <br />
-                If the user press the delete, the sketch restarts.
-                <br />
-                If user press the key 'a' or 'A', a new point is created.
+  return img;
+
+  ...
+
+  let pointDensityP = 5;
+  indexes = [];
+  for (let x = 0; x < textImg.width; x += pointDensityP) {
+      for (let y = 0; y < textImg.height; y += pointDensityP) {
+          // Calculate the index for the pixels array from x and y
+          let index = (x + y * textImg.width) * 4;
+
+          let b = textImg.pixels[index];
+          if (b == 0) indexes.push(createVector(x + positionX, y + positionY));
+      }
+  }  
+</code></pre>
+              <h4>getLetter()</h4>
+              <p>The <span class="span-code">getLetter()</span> function is called once the letters graphics are
+                created. The <span class="span-code">getLetter()</span> function loops through the letters array and
+                create an array of the starting index and ending index of agents that will form individual letter.
+                In this function is also where it checks if the agents are enough to form the string.
               </p>
+<pre><code class="language-js">
+for (let m = 0; m < letters.length; m++) {
+  arrPos = {
+      start: start,
+      end: start + letters[m].arrVectors.length,
+      arr: letters[m].arrVectors.length,
+      position: letters[m]
+  }
+  if (letters[m].length !== 0) {
+      end = start + letters[m].arrVectors.length;
+      start = start + letters[m].arrVectors.length;
+  } else {
+      end = start + letters[m].arrVectors.length;
+      start = start + letters[m].arrVectors.length;
+  }
+
+  arrayIndexes.push(arrPos);
+}
+</code></pre>
+              <h4>setTimeout()</h4>
+              <p> Using the <span class="span-code">setTimeout()</span> method, the agents that form one character at a
+                time moves towards its target.
+                The agents move towards it target using the lerp() method.
+              </p>
+<pre><code class="language-js">
+  setTimeout(() => {
+    for (let j = letter.start; j < letter.end; j++) {
+        agents[j].move();
+    }
+}, 500 * i);
+</code></pre>
+              <h4>Controllable Variables</h4>
+
+              <p>The users can control how fast the agents move to its position, the text that is being displayed on the
+                canvas and the initial position of the agents.
+              </p>
+              
             </div>
           </div>
         </div>

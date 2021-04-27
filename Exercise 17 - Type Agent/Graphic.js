@@ -4,7 +4,6 @@ class Graphic {
         this.letter = _letter;
         this.arrVectors = Graphic.indexes(this.graphic, this.letter);
         this.history = Graphic.history(this.letter);
-
     }
 
     static makeGraphic(i, fontsize) {
@@ -22,8 +21,6 @@ class Graphic {
 
     static indexes(textImg, letter) {
         let pointDensityP = 5;
-
-
         indexes = [];
         for (let x = 0; x < textImg.width; x += pointDensityP) {
             for (let y = 0; y < textImg.height; y += pointDensityP) {
@@ -73,7 +70,7 @@ class Graphic {
                 let index = (x + y * img2.width) * 4;
 
                 let b = img2.pixels[index];
-                if (b == 0) indexes.push(createVector(x + width - 210, y + height / 2 - 100));
+                if (b == 0) indexes.push(createVector(x + width - 210, y + height - 220));
             }
         }
 
