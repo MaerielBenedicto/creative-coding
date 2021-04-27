@@ -1,4 +1,4 @@
-# Interactive Color wheel
+# Final Interactive Color wheel
 
 ## Description
 An interactive color wheel where user can choose a color scheme they would like and spin the color wheel. Once the user pick a color scheme, a marker will show in the color wheel. The user can then click the "SPIN" button.
