@@ -93,7 +93,7 @@ function drawType(pathArray, match, shapeColour, innerColour) {
     // curveVertex(pathArray[startVertex + 1].x, pathArray[startVertex + 1].y);
     
     // move points 
-    let off = frameCount * 0.1 + (pathArray[i].x + pathArray[i].y) * 0.01;
+    let off = frameCount * 0.1 + (pathArray[i].x + pathArray[i].y);
 
     pathArray[i].x = pathArray[i].x + cos(off) * 5;
     pathArray[i].y = pathArray[i].y + sin(off) * 5;
