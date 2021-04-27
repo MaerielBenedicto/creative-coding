@@ -13,7 +13,7 @@ In the `getPath()` function, the string, x and y position where the string shoul
 Opentype.js have a method called `getPath()` which returns the path.commands array. 
 This path.commands array are the x and y of each points that forms the typography.
 
-### fintMatch()
+### findMatch()
 The `findMatch()` function accepts the string as an argument. In the `findMath()` function, the spaces from the string are removed. 
 There is an empty array called match, and `shapeIndex` initialised to 1. 
 A loop through the string is performed, and if the character matches one of the characters that will have double shapes ie 'o',
